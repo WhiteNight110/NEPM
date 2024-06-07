@@ -32,15 +32,23 @@
 | city     | char | 所在市   |
 | address  | char | 具体地址 |
 
-### AQI 空气质量指数表
+### 反馈表
 
-| 字段名   | 类型 | 说明           |
-| -------- | ---- | -------------- |
-| id       | int  | 空气质量指数id |
-| degree   | int  | AQI等级（1~6） |
-| feedback | char | 反馈信息       |
-| grid_id  | int  | 所属网格id     |
-| time     | date | 反馈时间       |
+| 字段名        | 类型 | 说明               |
+| ------------- | ---- | ------------------ |
+| id            | int  | 反馈id             |
+| degree        | int  | 预估AQI等级（1~6） |
+| feedback      | char | 反馈信息           |
+| time          | date | 反馈时间           |
+| supervisor_id | int  | 公众监督员id       |
+
+### 反馈-网格表
+
+| 字段名      | 类型 | 说明   |
+| ----------- | ---- | ------ |
+| id          | int  | id     |
+| feedback_id | int  | 反馈id |
+| grid_id     | int  | 网格id |
 
 ## NEPG网格员端
 
@@ -55,15 +63,14 @@
 
 ### task_detail 任务详情表
 
-| 字段名  | 类型   | 说明                                  |
-| ------- | ------ | ------------------------------------- |
-| id      | int    | 任务详情id                            |
-| grid_id | int    | 网格id（根据网格id查询对应AQI数据表） |
-| AQI_id  | int    | 空气质量指数id                        |
-| SO2     | double | SO2浓度                               |
-| CO      | double | CO浓度                                |
-| PM25    | double | PM2.5指数                             |
-| state   | int    | 状态(0:待检测，1：已检测)             |
+| 字段名      | 类型   | 说明                      |
+| ----------- | ------ | ------------------------- |
+| id          | int    | 任务详情id                |
+| feedback_id | int    | 反馈表id                  |
+| SO2         | double | SO2浓度                   |
+| CO          | double | CO浓度                    |
+| PM25        | double | PM2.5指数                 |
+| state       | int    | 状态(0:待检测，1：已检测) |
 
 ## NEPM系统管理员端
 
