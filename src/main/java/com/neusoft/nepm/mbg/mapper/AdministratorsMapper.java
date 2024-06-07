@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 public interface AdministratorsMapper {
     int countByExample(AdministratorsExample example);
 
+
     int deleteByExample(AdministratorsExample example);
 
     int deleteByPrimaryKey(Integer id);
