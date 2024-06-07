@@ -8,11 +8,11 @@
         <version>2.3.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.macro.mall.tiny</groupId>
-    <artifactId>mall-tiny-01</artifactId>
+    <groupId>org.neusoft</groupId>
+    <artifactId>NEPM</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mall-tiny-01</name>
-    <description>Demo project for Spring Boot</description>
+    <name>NEPM</name>
+    <description>NEPM</description>
 
     <properties>
         <java.version>1.8</java.version>
