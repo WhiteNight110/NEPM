@@ -109,8 +109,176 @@
 | sex       | int     |      | 公共监督员性别 1 男 0 女   |
 | remarks   | varchar | 100  | 备注                       |
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+# 服务器端接口API
+
+## admins
+
+1. admins/getAdminsByCode 
+
+- 参数：Admins对象
+- 返回值：Admins对象
+- 功能：根据管理员编码和密码进行查询，用于登录
+
+## aqi
+
+1. aqi/listAqiAll 
+
+- 参数：无
+- 返回值：List<Aqi>
+- 功能：全查询AQI信息
+
+## aqiFeedback
+
+1. aqiFeedback/saveAqiFeedback 
+
+- 参数：AqiFeedback对象
+- 返回值：int
+- 功能：保存公众监督员的AQI反馈信息
+
+2. aqiFeedback/listAqiFeedbackByTelId 
+
+- 参数：AqiFeedback对象
+- 返回值：List<AqiFeedback>
+- 功能：保存公众监督员的AQI反馈信息
+
+3. aqiFeedback/listAqiFeedbackPage  
+
+- 参数：AfPageRequestDto对象
+- 返回值：PageResponseDto<AqiFeedback>
+- 功能：查询AQI反馈信息，并有模糊查询和分页功能
+
+4. aqiFeedback/getAqiFeedbackById
+
+- 参数：AqiFeedback对象
+- 返回值：AqiFeedback对象
+- 功能：根据主键查询AQI反馈信息
+
+5. aqiFeedback/updateAqiFeedbackAssign 
+
+- 参数：AqiFeedback对象
+- 返回值：int
+- 功能：根据主键更新AQI反馈信息（更新指派信息）
+
+6. aqiFeedback/listAqiFeedbackByGmId 
+
+- 参数：AqiFeedback对象
+- 返回值：List<AqiFeedback>
+- 功能：根据网格员编号查询指派给网格员的AQI反馈信息
+
+7. aqiFeedback/updateAqiFeedbackState
+
+- 参数：AqiFeedback对象
+- 返回值：int
+- 功能：根据主键更新AQI反馈信息（更新状态）
+
+## gridCity
+
+1. gridCity/listGridCityByProvinceId 
+
+- 参数：GridCity对象
+- 返回值：List<GridCity>
+- 功能：根据所属省查询市信息列表
+
+## gridMember
+
+1. gridMember/listGridMemberByProvinceId
+
+- 参数：GridMember对象
+- 返回值：List<GridMember>
+- 功能：根据省和市查询可工作状态的所属网格员信息列表
+
+2. gridMember/getGridMemberByCodeByPass 
+
+- 参数：GridMember对象
+- 返回值：GridMember对象
+- 功能：根据网格员登录编码和密码进行查询，用于登录
+
+## gridProvince
+
+​	1. gridMember/getGridMemberByCodeByPass 
+
+- 参数：GridMember对象
+- 返回值：GridMember对象
+- 功能：根据网格员登录编码和密码登录
+
+## statistics
+
+1. statistics/saveStatistics 
+
+- 参数：Statistics对象
+- 返回值：int
+- 功能：保存网格员提交的AQI确认信息
+
+2. statistics/listStatisticsPage 
+
+- 参数：StatisPageRequestDto对象
+- 返回值：PageResponseDto<Statistics>
+- 功能：查询确认AQI信息列表，并有模糊查询和分页功能
+
+3. statistics/getStatisticsById 
+
+- 参数：Statistics对象
+- 返回值：Statistics对象
+- 功能：根据主键查询确认AQI信息
+
+4. statistics/listProvinceItemTotalStatis 
+
+- 参数：无
+- 返回值：List<ProvinceItemTotalStatisDto>
+- 功能：查询省分组AQI超标累计信息
+
+5. statistics/listAqiDistributeTotalStatis 
+
+- 参数：无
+- 返回值：List<AqiDistributeTotalStatisDto>
+- 功能：查询以AQI等级为分组的AQI超标分布统计信息
+
+6. statistics/listAqiTrendTotalStatis 
+
+- 参数：无
+- 返回值：List<AqiTrendTotalStatisDto>
+- 功能：查询当前12个月的AQI超标趋势统计信息
+
+7. statistics/getAqiCount 
+
+- 参数：无
+- 返回值：long
+- 功能：查询确认AQI数据数量
+
+8. statistics/getAqiGoodCount 
+
+- 参数：无
+- 返回值：long
+- 功能：查询确认AQI良好数据数量
+
+9. tatistics/getProvinceCoverage 
+
+- 参数：无
+- 返回值：String
+- 功能：查询省网格的全国覆盖率
+
+10. statistics/getCityCoverage 
+
+- 参数：无
+- 返回值：String
+- 功能：查询大城市网格的全国覆盖率
+
+## supervisor
+
+1. supervisor/getSupervisorById 
+
+- 参数：Supervisor对象
+- 返回值：Supervisor对象
+- 功能：根据主键查询公众监督员，用于注册时手机号码是否存在验证
+
+2. supervisor/saveSupervisor 
+
+- 参数：Supervisor对象
+- 返回值：int
+- 功能：保存公众监督员信息，用于注册
+
+3. upervisor/getSupervisorByIdByPass 
+
+- 参数：Supervisor对象
+- 返回值：Supervisor对象
+- 功能：根据公众监督员手机号码和密码查询，用于登录。
