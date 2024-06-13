@@ -3,8 +3,11 @@ package com.neusoft.nepm.mbg.mapper;
 import com.neusoft.nepm.mbg.model.GridMember;
 import com.neusoft.nepm.mbg.model.GridMemberExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface GridMemberMapper {
     int countByExample(GridMemberExample example);
 

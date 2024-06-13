@@ -16,6 +16,12 @@
     <result column="spm_max" jdbcType="INTEGER" property="spmMax" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
+
+<!--  查询所有AQI数据-->
+  <select id="selectByAll" resultMap="BaseResultMap">
+    SELECT * FROM aqi
+  </select>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

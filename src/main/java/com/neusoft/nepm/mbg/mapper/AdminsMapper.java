@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface AdminsMapper {
+
+
     int countByExample(AdminsExample example);
 
     int deleteByExample(AdminsExample example);

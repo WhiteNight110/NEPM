@@ -3,8 +3,11 @@ package com.neusoft.nepm.mbg.mapper;
 import com.neusoft.nepm.mbg.model.AqiFeedback;
 import com.neusoft.nepm.mbg.model.AqiFeedbackExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface AqiFeedbackMapper {
     int countByExample(AqiFeedbackExample example);
 

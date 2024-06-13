@@ -6,7 +6,7 @@ server:
 logging:
   level:
     org.springframework: info
-    com.neusoft.tijiancms.mapper: debug
+    com.neusoft.nepm.mbg.mapper: debug
 
 spring:
   datasource:

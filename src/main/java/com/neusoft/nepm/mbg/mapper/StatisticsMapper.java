@@ -3,8 +3,11 @@ package com.neusoft.nepm.mbg.mapper;
 import com.neusoft.nepm.mbg.model.Statistics;
 import com.neusoft.nepm.mbg.model.StatisticsExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface StatisticsMapper {
     int countByExample(StatisticsExample example);
 

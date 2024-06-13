@@ -3,8 +3,11 @@ package com.neusoft.nepm.mbg.mapper;
 import com.neusoft.nepm.mbg.model.GridCity;
 import com.neusoft.nepm.mbg.model.GridCityExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface GridCityMapper {
     int countByExample(GridCityExample example);
 
