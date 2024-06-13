@@ -10,7 +10,7 @@ public interface SupervisorMapper {
 
     int deleteByExample(SupervisorExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String telId);
 
     int insert(Supervisor record);
 
@@ -18,7 +18,7 @@ public interface SupervisorMapper {
 
     List<Supervisor> selectByExample(SupervisorExample example);
 
-    Supervisor selectByPrimaryKey(Integer id);
+    Supervisor selectByPrimaryKey(String telId);
 
     int updateByExampleSelective(@Param("record") Supervisor record, @Param("example") SupervisorExample example);
 

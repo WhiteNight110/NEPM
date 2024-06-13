@@ -1,5 +1,12 @@
 server:
-  port: 8084
+  port: 8080
+  servlet:
+    context-path: /nepm
+
+logging:
+  level:
+    org.springframework: info
+    com.neusoft.tijiancms.mapper: debug
 
 spring:
   datasource:

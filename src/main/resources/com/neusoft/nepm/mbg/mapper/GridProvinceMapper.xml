@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.neusoft.nepm.mbg.mapper.SupervisorMapper">
-  <resultMap id="BaseResultMap" type="com.neusoft.nepm.mbg.model.Supervisor">
-    <id column="tel_id" jdbcType="VARCHAR" property="telId" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
-    <result column="sex" jdbcType="INTEGER" property="sex" />
+<mapper namespace="com.neusoft.nepm.mbg.mapper.GridProvinceMapper">
+  <resultMap id="BaseResultMap" type="com.neusoft.nepm.mbg.model.GridProvince">
+    <id column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="province_abbr" jdbcType="VARCHAR" property="provinceAbbr" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tel_id, password, real_name, birthday, sex, remarks
+    province_id, province_name, province_abbr, remarks
   </sql>
-  <select id="selectByExample" parameterType="com.neusoft.nepm.mbg.model.SupervisorExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.neusoft.nepm.mbg.model.GridProvinceExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from supervisor
+    from grid_province
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,96 +82,76 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from supervisor
-    where tel_id = #{telId,jdbcType=VARCHAR}
+    from grid_province
+    where province_id = #{provinceId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from supervisor
-    where tel_id = #{telId,jdbcType=VARCHAR}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from grid_province
+    where province_id = #{provinceId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.neusoft.nepm.mbg.model.SupervisorExample">
-    delete from supervisor
+  <delete id="deleteByExample" parameterType="com.neusoft.nepm.mbg.model.GridProvinceExample">
+    delete from grid_province
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    insert into supervisor (tel_id, password, real_name, 
-      birthday, sex, remarks
-      )
-    values (#{telId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.neusoft.nepm.mbg.model.GridProvince">
+    insert into grid_province (province_id, province_name, province_abbr, 
+      remarks)
+    values (#{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, #{provinceAbbr,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    insert into supervisor
+  <insert id="insertSelective" parameterType="com.neusoft.nepm.mbg.model.GridProvince">
+    insert into grid_province
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="telId != null">
-        tel_id,
+      <if test="provinceId != null">
+        province_id,
       </if>
-      <if test="password != null">
-        password,
+      <if test="provinceName != null">
+        province_name,
       </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="sex != null">
-        sex,
+      <if test="provinceAbbr != null">
+        province_abbr,
       </if>
       <if test="remarks != null">
         remarks,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="telId != null">
-        #{telId,jdbcType=VARCHAR},
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
       </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=INTEGER},
+      <if test="provinceAbbr != null">
+        #{provinceAbbr,jdbcType=VARCHAR},
       </if>
       <if test="remarks != null">
         #{remarks,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.neusoft.nepm.mbg.model.SupervisorExample" resultType="java.lang.Integer">
-    select count(*) from supervisor
+  <select id="countByExample" parameterType="com.neusoft.nepm.mbg.model.GridProvinceExample" resultType="java.lang.Integer">
+    select count(*) from grid_province
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update supervisor
+    update grid_province
     <set>
-      <if test="record.telId != null">
-        tel_id = #{record.telId,jdbcType=VARCHAR},
+      <if test="record.provinceId != null">
+        province_id = #{record.provinceId,jdbcType=INTEGER},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
+      <if test="record.provinceName != null">
+        province_name = #{record.provinceName,jdbcType=VARCHAR},
       </if>
-      <if test="record.realName != null">
-        real_name = #{record.realName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthday != null">
-        birthday = #{record.birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sex != null">
-        sex = #{record.sex,jdbcType=INTEGER},
+      <if test="record.provinceAbbr != null">
+        province_abbr = #{record.provinceAbbr,jdbcType=VARCHAR},
       </if>
       <if test="record.remarks != null">
         remarks = #{record.remarks,jdbcType=VARCHAR},
@@ -184,45 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update supervisor
-    set tel_id = #{record.telId,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      real_name = #{record.realName,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=INTEGER},
+    update grid_province
+    set province_id = #{record.provinceId,jdbcType=INTEGER},
+      province_name = #{record.provinceName,jdbcType=VARCHAR},
+      province_abbr = #{record.provinceAbbr,jdbcType=VARCHAR},
       remarks = #{record.remarks,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    update supervisor
+  <update id="updateByPrimaryKeySelective" parameterType="com.neusoft.nepm.mbg.model.GridProvince">
+    update grid_province
     <set>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
       </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=INTEGER},
+      <if test="provinceAbbr != null">
+        province_abbr = #{provinceAbbr,jdbcType=VARCHAR},
       </if>
       <if test="remarks != null">
         remarks = #{remarks,jdbcType=VARCHAR},
       </if>
     </set>
-    where tel_id = #{telId,jdbcType=VARCHAR}
+    where province_id = #{provinceId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    update supervisor
-    set password = #{password,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.neusoft.nepm.mbg.model.GridProvince">
+    update grid_province
+    set province_name = #{provinceName,jdbcType=VARCHAR},
+      province_abbr = #{provinceAbbr,jdbcType=VARCHAR},
       remarks = #{remarks,jdbcType=VARCHAR}
-    where tel_id = #{telId,jdbcType=VARCHAR}
+    where province_id = #{provinceId,jdbcType=INTEGER}
   </update>
 </mapper>
