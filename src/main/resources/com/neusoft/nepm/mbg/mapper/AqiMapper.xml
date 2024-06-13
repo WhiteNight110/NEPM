@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.nepm.mbg.mapper.AqiMapper">
+  <resultMap id="BaseResultMap" type="com.neusoft.nepm.mbg.model.Aqi">
+    <id column="aqi_id" jdbcType="INTEGER" property="aqiId" />
+    <result column="chinese_explain" jdbcType="VARCHAR" property="chineseExplain" />
+    <result column="aqi_explain" jdbcType="VARCHAR" property="aqiExplain" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="health_impact" jdbcType="VARCHAR" property="healthImpact" />
+    <result column="take_steps" jdbcType="VARCHAR" property="takeSteps" />
+    <result column="so2_min" jdbcType="INTEGER" property="so2Min" />
+    <result column="so2_max" jdbcType="INTEGER" property="so2Max" />
+    <result column="co_min" jdbcType="INTEGER" property="coMin" />
+    <result column="co_max" jdbcType="INTEGER" property="coMax" />
+    <result column="spm_min" jdbcType="INTEGER" property="spmMin" />
+    <result column="spm_max" jdbcType="INTEGER" property="spmMax" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+
+<!--  查询所有AQI数据-->
+  <select id="selectByAll" resultMap="BaseResultMap">
+    SELECT * FROM aqi
+  </select>
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    aqi_id, chinese_explain, aqi_explain, color, health_impact, take_steps, so2_min, 
+    so2_max, co_min, co_max, spm_min, spm_max, remarks
+  </sql>
+  <select id="selectByExample" parameterType="com.neusoft.nepm.mbg.model.AqiExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from aqi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from aqi
+    where aqi_id = #{aqiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from aqi
+    where aqi_id = #{aqiId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.neusoft.nepm.mbg.model.AqiExample">
+    delete from aqi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.neusoft.nepm.mbg.model.Aqi">
+    insert into aqi (aqi_id, chinese_explain, aqi_explain, 
+      color, health_impact, take_steps, 
+      so2_min, so2_max, co_min, 
+      co_max, spm_min, spm_max, 
+      remarks)
+    values (#{aqiId,jdbcType=INTEGER}, #{chineseExplain,jdbcType=VARCHAR}, #{aqiExplain,jdbcType=VARCHAR}, 
+      #{color,jdbcType=VARCHAR}, #{healthImpact,jdbcType=VARCHAR}, #{takeSteps,jdbcType=VARCHAR}, 
+      #{so2Min,jdbcType=INTEGER}, #{so2Max,jdbcType=INTEGER}, #{coMin,jdbcType=INTEGER}, 
+      #{coMax,jdbcType=INTEGER}, #{spmMin,jdbcType=INTEGER}, #{spmMax,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neusoft.nepm.mbg.model.Aqi">
+    insert into aqi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aqiId != null">
+        aqi_id,
+      </if>
+      <if test="chineseExplain != null">
+        chinese_explain,
+      </if>
+      <if test="aqiExplain != null">
+        aqi_explain,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="healthImpact != null">
+        health_impact,
+      </if>
+      <if test="takeSteps != null">
+        take_steps,
+      </if>
+      <if test="so2Min != null">
+        so2_min,
+      </if>
+      <if test="so2Max != null">
+        so2_max,
+      </if>
+      <if test="coMin != null">
+        co_min,
+      </if>
+      <if test="coMax != null">
+        co_max,
+      </if>
+      <if test="spmMin != null">
+        spm_min,
+      </if>
+      <if test="spmMax != null">
+        spm_max,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aqiId != null">
+        #{aqiId,jdbcType=INTEGER},
+      </if>
+      <if test="chineseExplain != null">
+        #{chineseExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="aqiExplain != null">
+        #{aqiExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="healthImpact != null">
+        #{healthImpact,jdbcType=VARCHAR},
+      </if>
+      <if test="takeSteps != null">
+        #{takeSteps,jdbcType=VARCHAR},
+      </if>
+      <if test="so2Min != null">
+        #{so2Min,jdbcType=INTEGER},
+      </if>
+      <if test="so2Max != null">
+        #{so2Max,jdbcType=INTEGER},
+      </if>
+      <if test="coMin != null">
+        #{coMin,jdbcType=INTEGER},
+      </if>
+      <if test="coMax != null">
+        #{coMax,jdbcType=INTEGER},
+      </if>
+      <if test="spmMin != null">
+        #{spmMin,jdbcType=INTEGER},
+      </if>
+      <if test="spmMax != null">
+        #{spmMax,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.neusoft.nepm.mbg.model.AqiExample" resultType="java.lang.Integer">
+    select count(*) from aqi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update aqi
+    <set>
+      <if test="record.aqiId != null">
+        aqi_id = #{record.aqiId,jdbcType=INTEGER},
+      </if>
+      <if test="record.chineseExplain != null">
+        chinese_explain = #{record.chineseExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aqiExplain != null">
+        aqi_explain = #{record.aqiExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null">
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.healthImpact != null">
+        health_impact = #{record.healthImpact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takeSteps != null">
+        take_steps = #{record.takeSteps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.so2Min != null">
+        so2_min = #{record.so2Min,jdbcType=INTEGER},
+      </if>
+      <if test="record.so2Max != null">
+        so2_max = #{record.so2Max,jdbcType=INTEGER},
+      </if>
+      <if test="record.coMin != null">
+        co_min = #{record.coMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.coMax != null">
+        co_max = #{record.coMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.spmMin != null">
+        spm_min = #{record.spmMin,jdbcType=INTEGER},
+      </if>
+      <if test="record.spmMax != null">
+        spm_max = #{record.spmMax,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update aqi
+    set aqi_id = #{record.aqiId,jdbcType=INTEGER},
+      chinese_explain = #{record.chineseExplain,jdbcType=VARCHAR},
+      aqi_explain = #{record.aqiExplain,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR},
+      health_impact = #{record.healthImpact,jdbcType=VARCHAR},
+      take_steps = #{record.takeSteps,jdbcType=VARCHAR},
+      so2_min = #{record.so2Min,jdbcType=INTEGER},
+      so2_max = #{record.so2Max,jdbcType=INTEGER},
+      co_min = #{record.coMin,jdbcType=INTEGER},
+      co_max = #{record.coMax,jdbcType=INTEGER},
+      spm_min = #{record.spmMin,jdbcType=INTEGER},
+      spm_max = #{record.spmMax,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neusoft.nepm.mbg.model.Aqi">
+    update aqi
+    <set>
+      <if test="chineseExplain != null">
+        chinese_explain = #{chineseExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="aqiExplain != null">
+        aqi_explain = #{aqiExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="healthImpact != null">
+        health_impact = #{healthImpact,jdbcType=VARCHAR},
+      </if>
+      <if test="takeSteps != null">
+        take_steps = #{takeSteps,jdbcType=VARCHAR},
+      </if>
+      <if test="so2Min != null">
+        so2_min = #{so2Min,jdbcType=INTEGER},
+      </if>
+      <if test="so2Max != null">
+        so2_max = #{so2Max,jdbcType=INTEGER},
+      </if>
+      <if test="coMin != null">
+        co_min = #{coMin,jdbcType=INTEGER},
+      </if>
+      <if test="coMax != null">
+        co_max = #{coMax,jdbcType=INTEGER},
+      </if>
+      <if test="spmMin != null">
+        spm_min = #{spmMin,jdbcType=INTEGER},
+      </if>
+      <if test="spmMax != null">
+        spm_max = #{spmMax,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where aqi_id = #{aqiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neusoft.nepm.mbg.model.Aqi">
+    update aqi
+    set chinese_explain = #{chineseExplain,jdbcType=VARCHAR},
+      aqi_explain = #{aqiExplain,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      health_impact = #{healthImpact,jdbcType=VARCHAR},
+      take_steps = #{takeSteps,jdbcType=VARCHAR},
+      so2_min = #{so2Min,jdbcType=INTEGER},
+      so2_max = #{so2Max,jdbcType=INTEGER},
+      co_min = #{coMin,jdbcType=INTEGER},
+      co_max = #{coMax,jdbcType=INTEGER},
+      spm_min = #{spmMin,jdbcType=INTEGER},
+      spm_max = #{spmMax,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where aqi_id = #{aqiId,jdbcType=INTEGER}
+  </update>
+</mapper>

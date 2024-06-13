@@ -3,14 +3,17 @@ package com.neusoft.nepm.mbg.mapper;
 import com.neusoft.nepm.mbg.model.Supervisor;
 import com.neusoft.nepm.mbg.model.SupervisorExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface SupervisorMapper {
     int countByExample(SupervisorExample example);
 
     int deleteByExample(SupervisorExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String telId);
 
     int insert(Supervisor record);
 
@@ -18,7 +21,7 @@ public interface SupervisorMapper {
 
     List<Supervisor> selectByExample(SupervisorExample example);
 
-    Supervisor selectByPrimaryKey(Integer id);
+    Supervisor selectByPrimaryKey(String telId);
 
     int updateByExampleSelective(@Param("record") Supervisor record, @Param("example") SupervisorExample example);
 

@@ -139,7 +139,7 @@
 
 - 参数：AqiFeedback对象
 - 返回值：List<AqiFeedback>
-- 功能：保存公众监督员的AQI反馈信息
+- 功能：根据TelId查询AQI反馈情况
 
 3. aqiFeedback/listAqiFeedbackPage  
 

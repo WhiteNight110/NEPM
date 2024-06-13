@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.neusoft.nepm.mbg.mapper.SupervisorMapper">
-  <resultMap id="BaseResultMap" type="com.neusoft.nepm.mbg.model.Supervisor">
-    <id column="tel_id" jdbcType="VARCHAR" property="telId" />
+<mapper namespace="com.neusoft.nepm.mbg.mapper.AdminsMapper">
+  <resultMap id="BaseResultMap" type="com.neusoft.nepm.mbg.model.Admins">
+    <id column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="admin_code" jdbcType="VARCHAR" property="adminCode" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
-    <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tel_id, password, real_name, birthday, sex, remarks
+    admin_id, admin_code, password, remarks
   </sql>
-  <select id="selectByExample" parameterType="com.neusoft.nepm.mbg.model.SupervisorExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.neusoft.nepm.mbg.model.AdminsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from supervisor
+    from admins
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,96 +82,76 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from supervisor
-    where tel_id = #{telId,jdbcType=VARCHAR}
+    from admins
+    where admin_id = #{adminId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from supervisor
-    where tel_id = #{telId,jdbcType=VARCHAR}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admins
+    where admin_id = #{adminId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.neusoft.nepm.mbg.model.SupervisorExample">
-    delete from supervisor
+  <delete id="deleteByExample" parameterType="com.neusoft.nepm.mbg.model.AdminsExample">
+    delete from admins
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    insert into supervisor (tel_id, password, real_name, 
-      birthday, sex, remarks
-      )
-    values (#{telId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{birthday,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.neusoft.nepm.mbg.model.Admins">
+    insert into admins (admin_id, admin_code, password, 
+      remarks)
+    values (#{adminId,jdbcType=INTEGER}, #{adminCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    insert into supervisor
+  <insert id="insertSelective" parameterType="com.neusoft.nepm.mbg.model.Admins">
+    insert into admins
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="telId != null">
-        tel_id,
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminCode != null">
+        admin_code,
       </if>
       <if test="password != null">
         password,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="sex != null">
-        sex,
       </if>
       <if test="remarks != null">
         remarks,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="telId != null">
-        #{telId,jdbcType=VARCHAR},
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminCode != null">
+        #{adminCode,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=INTEGER},
       </if>
       <if test="remarks != null">
         #{remarks,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.neusoft.nepm.mbg.model.SupervisorExample" resultType="java.lang.Integer">
-    select count(*) from supervisor
+  <select id="countByExample" parameterType="com.neusoft.nepm.mbg.model.AdminsExample" resultType="java.lang.Integer">
+    select count(*) from admins
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update supervisor
+    update admins
     <set>
-      <if test="record.telId != null">
-        tel_id = #{record.telId,jdbcType=VARCHAR},
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminCode != null">
+        admin_code = #{record.adminCode,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.realName != null">
-        real_name = #{record.realName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.birthday != null">
-        birthday = #{record.birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sex != null">
-        sex = #{record.sex,jdbcType=INTEGER},
       </if>
       <if test="record.remarks != null">
         remarks = #{record.remarks,jdbcType=VARCHAR},
@@ -184,45 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update supervisor
-    set tel_id = #{record.telId,jdbcType=VARCHAR},
+    update admins
+    set admin_id = #{record.adminId,jdbcType=INTEGER},
+      admin_code = #{record.adminCode,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      real_name = #{record.realName,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=INTEGER},
       remarks = #{record.remarks,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    update supervisor
+  <update id="updateByPrimaryKeySelective" parameterType="com.neusoft.nepm.mbg.model.Admins">
+    update admins
     <set>
+      <if test="adminCode != null">
+        admin_code = #{adminCode,jdbcType=VARCHAR},
+      </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=INTEGER},
       </if>
       <if test="remarks != null">
         remarks = #{remarks,jdbcType=VARCHAR},
       </if>
     </set>
-    where tel_id = #{telId,jdbcType=VARCHAR}
+    where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.neusoft.nepm.mbg.model.Supervisor">
-    update supervisor
-    set password = #{password,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.neusoft.nepm.mbg.model.Admins">
+    update admins
+    set admin_code = #{adminCode,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       remarks = #{remarks,jdbcType=VARCHAR}
-    where tel_id = #{telId,jdbcType=VARCHAR}
+    where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
 </mapper>
