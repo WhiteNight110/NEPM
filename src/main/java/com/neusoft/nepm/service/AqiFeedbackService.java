@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2024-06-14
  */
 public interface AqiFeedbackService extends IService<AqiFeedback> {
+    int AqiFeedbackInsert(AqiFeedback aqiFeedback);
 
 }

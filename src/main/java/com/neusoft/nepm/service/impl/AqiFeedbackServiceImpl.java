@@ -4,6 +4,7 @@ import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.mapper.AqiFeedbackMapper;
 import com.neusoft.nepm.service.AqiFeedbackService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AqiFeedbackServiceImpl extends ServiceImpl<AqiFeedbackMapper, AqiFeedback> implements AqiFeedbackService {
 
+    @Autowired
+    private AqiFeedbackMapper aqiFeedbackMapper;
+
+    @Override
+    public int AqiFeedbackInsert(AqiFeedback aqiFeedback) {
+        int res = aqiFeedbackMapper.insert(aqiFeedback);
+        return res;
+    }
 }
