@@ -141,7 +141,7 @@
 - 返回值：List<AqiFeedback>
 - 功能：根据TelId查询AQI反馈情况
 
-3. aqiFeedback/listAqiFeedbackPage  
+3. aqiFeedback/listAqiFeedbackPage  （管理员端）
 
 - 参数：AfPageRequestDto对象
 - 返回值：PageResponseDto<AqiFeedback>
@@ -149,7 +149,7 @@
 
 4. aqiFeedback/getAqiFeedbackById
 
-- 参数：AqiFeedback对象
+- 参数：afId
 - 返回值：AqiFeedback对象
 - 功能：根据主键查询AQI反馈信息
 
