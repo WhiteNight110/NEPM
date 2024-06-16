@@ -17,10 +17,15 @@ public class Aqi implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 空气质量指数级别(共六级)
+     * 空气质量编号
      */
     @TableId(value = "aqi_id", type = IdType.AUTO)
     private Integer aqiId;
+
+    /**
+     * 空气质量指数级别(共六级)
+     */
+    private Integer aqiLevel;
 
     /**
      * 空气质量指数级别汉字表述
@@ -84,6 +89,13 @@ public class Aqi implements Serializable {
 
     public Integer getAqiId() {
         return aqiId;
+    }
+
+    public void setAqiLevel(Integer aqiLevel) {
+        this.aqiLevel = aqiLevel;
+    }
+    public Integer getAqiLevel() {
+        return aqiLevel;
     }
 
     public void setAqiId(Integer aqiId) {
@@ -190,6 +202,7 @@ public class Aqi implements Serializable {
             ", spmMin=" + spmMin +
             ", spmMax=" + spmMax +
             ", remarks=" + remarks +
+            ", aqiLevel=" + aqiLevel +
         "}";
     }
 }

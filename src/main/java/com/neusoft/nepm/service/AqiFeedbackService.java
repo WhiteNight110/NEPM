@@ -32,7 +32,7 @@ public interface AqiFeedbackService extends IService<AqiFeedback> {
     List<AqiFeedback> AqiFeedbackByTelId(Integer telId);
 
     /**
-     * 分页查询AqiFeedbak
+     * 分页查询 AqiFeedback
      * @param afPageRequestDto
      * @return CommonPage<AqiFeedback>
      */

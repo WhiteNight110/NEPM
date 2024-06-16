@@ -18,6 +18,8 @@ public class AfPageRequestDto{
     private int provinceId;
     private int cityId;
     private int estimatedId;
-    private Date afDate;
     private int state;
+
+//    后续添加针对时间的查询
+
 }

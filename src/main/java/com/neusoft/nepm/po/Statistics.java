@@ -70,7 +70,7 @@ public class Statistics implements Serializable {
     /**
      * 实测空气质量指数级别
      */
-    private Integer aqiId;
+    private Integer aqiLevel;
 
     /**
      * 确认日期
@@ -173,11 +173,11 @@ public class Statistics implements Serializable {
         this.spmLevel = spmLevel;
     }
     public Integer getAqiId() {
-        return aqiId;
+        return aqiLevel;
     }
 
-    public void setAqiId(Integer aqiId) {
-        this.aqiId = aqiId;
+    public void setAqiId(Integer aqiLevel) {
+        this.aqiLevel = aqiLevel;
     }
     public String getConfirmDate() {
         return confirmDate;
@@ -235,7 +235,7 @@ public class Statistics implements Serializable {
             ", coLevel=" + coLevel +
             ", spmValue=" + spmValue +
             ", spmLevel=" + spmLevel +
-            ", aqiId=" + aqiId +
+            ", aqiLevel=" + aqiLevel +
             ", confirmDate=" + confirmDate +
             ", confirmTime=" + confirmTime +
             ", gmId=" + gmId +
