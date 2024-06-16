@@ -1,7 +1,9 @@
 package com.neusoft.nepm.controller;
 
+import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.po.Admins;
+import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.service.AdminsService;
 import com.neusoft.nepm.service.impl.AdminsServiceImpl;
 import io.swagger.annotations.Api;
@@ -21,10 +23,10 @@ public class AdminsController {
     @ApiOperation("根据管理员编码和密码进行查询，用于登录")
     @GetMapping("/getAdminsByCode")
     @ResponseBody
-    public CommonResult<String> login(String adminCode, String password){
+    public CommonResult<String> login(String adminsCode, String password){
 
         Admins admin = new Admins();
-        admin.setAdminCode(adminCode);
+        admin.setAdminCode(adminsCode);
         admin.setPassword(password);
         String msg = adminsService.adminsLogin(admin);
         if(("SUCCESS").equals(msg)){
@@ -35,5 +37,8 @@ public class AdminsController {
         }
 
     }
+
+
+
 
 }

@@ -161,11 +161,11 @@
 
 6. aqiFeedback/listAqiFeedbackByGmId 
 
-- 参数：AqiFeedback对象
+- 参数：GmId 
 - 返回值：List<AqiFeedback>
 - 功能：根据网格员编号查询指派给网格员的AQI反馈信息
 
-7. aqiFeedback/updateAqiFeedbackState
+7. aqiFeedback/updateAqiFeedbackState（同updateAqiFeedbackAssign  略）
 
 - 参数：AqiFeedback对象
 - 返回值：int
@@ -175,7 +175,7 @@
 
 1. gridCity/listGridCityByProvinceId 
 
-- 参数：GridCity对象
+- 参数：ProvinceId
 - 返回值：List<GridCity>
 - 功能：根据所属省查询市信息列表
 
@@ -183,23 +183,23 @@
 
 1. gridMember/listGridMemberByProvinceId
 
-- 参数：GridMember对象
+- 参数：ProvinceId
 - 返回值：List<GridMember>
 - 功能：根据省和市查询可工作状态的所属网格员信息列表
 
 2. gridMember/getGridMemberByCodeByPass 
 
-- 参数：GridMember对象
+- 参数：gmCode 网格员账号 password 网格员密码
 - 返回值：GridMember对象
 - 功能：根据网格员登录编码和密码进行查询，用于登录
 
 ## gridProvince
 
-​	1. gridMember/getGridMemberByCodeByPass 
+​	1. gridProvince/getGridMemberByCodeByPass 
 
 - 参数：GridMember对象
 - 返回值：GridMember对象
-- 功能：根据网格员登录编码和密码登录
+- 功能：根据网格员信息找到网格所在省市区域
 
 ## statistics
 
