@@ -195,10 +195,10 @@
 
 ## gridProvince
 
-​	1. gridProvince/getGridMemberByCodeByPass 
+​	1. gridProvince/getGridProvinceByGridMember
 
 - 参数：GridMember对象
-- 返回值：GridMember对象
+- 返回值：GridProvince对象
 - 功能：根据网格员信息找到网格所在省市区域
 
 ## statistics
