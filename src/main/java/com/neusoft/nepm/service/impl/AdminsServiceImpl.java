@@ -1,31 +1,41 @@
 package com.neusoft.nepm.service.impl;
 
-import com.neusoft.nepm.mbg.mapper.AdminsMapper;
-import com.neusoft.nepm.mbg.model.Admins;
-import com.neusoft.nepm.mbg.model.AdminsExample;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.neusoft.nepm.po.Admins;
+import com.neusoft.nepm.mapper.AdminsMapper;
 import com.neusoft.nepm.service.AdminsService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+/**
+ * <p>
+ * 系统管理员表 服务实现类
+ * </p>
+ *
+ * @author crm
+ * @since 2024-06-14
+ */
 @Service
-public class AdminsServiceImpl implements AdminsService {
+public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> implements AdminsService {
 
     @Autowired
     private AdminsMapper adminsMapper;
 
+
     @Override
-    public String getAdminsByCode(Admins admins) {
-        AdminsExample example = new AdminsExample();
-        AdminsExample.Criteria criteria = example.createCriteria();
-        criteria.andAdminCodeEqualTo(admins.getAdminCode());
-        criteria.andPasswordEqualTo(admins.getPassword());
-        criteria.andAdminCodeIsNotNull();
-        List<Admins> adminsList = adminsMapper.selectByExample(example);
-        if(adminsList.isEmpty()){
+    public String adminsLogin(Admins admins) {
+        Admins admin = adminsMapper.selectOne(new QueryWrapper<Admins>().eq("admin_code", admins.getAdminCode()).eq("password", admins.getPassword()));
+
+        if(admin == null){
             return "FAILED";
         }
         return "SUCCESS";
+
+    }
+
+    @Override
+    public int adminsInsert(Admins admins) {
+        return adminsMapper.insert(admins);
     }
 }
