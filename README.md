@@ -206,7 +206,7 @@
 1. statistics/saveStatistics 
 
 - 参数：Statistics对象
-- 返回值：int
+- 返回值：Boolean
 - 功能：保存网格员提交的AQI确认信息
 
 2. statistics/listStatisticsPage 
