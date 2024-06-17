@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Api(tags = "GridProvinceController", description = "网格省级信息")
-@RequestMapping("/GridProvinceController")
+@RequestMapping("/gridProvinceController")
 public class GridProvinceController {
     @Autowired
     private GridProvinceService gridProvinceService;

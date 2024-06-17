@@ -21,21 +21,29 @@ public class AdminsController {
     private AdminsService adminsService;
 
     @ApiOperation("根据管理员编码和密码进行查询，用于登录")
-    @GetMapping("/getAdminsByCode")
+    @PostMapping("/getAdminsByCode")
     @ResponseBody
-    public CommonResult<String> login(String adminsCode, String password){
+    public CommonResult<String> getAdminsByCode(@RequestBody Admins admins){
 
-        Admins admin = new Admins();
-        admin.setAdminCode(adminsCode);
-        admin.setPassword(password);
-        String msg = adminsService.adminsLogin(admin);
+        String msg = adminsService.adminsLogin(admins);
         if(("SUCCESS").equals(msg)){
             return CommonResult.success("登录成功");
         }
         else{
             return CommonResult.fail("用户名或密码有误");
         }
+    }
 
+    @ApiOperation("管理员注册")
+    @PostMapping("/adminRegister")
+    public CommonResult<String> adminRegister(@RequestBody Admins admins){
+        String msg = adminsService.adminsLogin(admins);
+        if(("SUCCESS").equals(msg)){
+            return CommonResult.success("注册成功");
+        }
+        else{
+            return CommonResult.fail("用户已存在");
+        }
     }
 
 

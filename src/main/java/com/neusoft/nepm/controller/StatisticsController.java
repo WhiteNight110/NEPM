@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @Api(tags = "StatisticsController", description = "统计上传数据")
-@RequestMapping("/Statistics")
+@RequestMapping("/statistics")
 public class StatisticsController {
 
     @Autowired
@@ -54,6 +56,22 @@ public class StatisticsController {
         Page<Statistics> statisticsPage = new Page<>(staPageRequestDto.getPage(), staPageRequestDto.getSize());
 
         return CommonResult.success(CommonPage.restPage(statisticsService.page(statisticsPage, qw)));
+    }
+
+    @ApiOperation("根据主键查询确认AQI信息")
+    @ResponseBody
+    @GetMapping("/getStatisticsById")
+    public CommonResult<Statistics> getStatisticsById(@RequestParam int id){
+        return CommonResult.success(statisticsService.getById(id));
+    }
+
+    @ApiOperation("查询省分组AQI超标累计信息")
+    @ResponseBody
+    @GetMapping("/listProvinceItemTotalStatis")
+    public CommonResult<List<Statistics>> listProvinceItemTotalStatis(@RequestParam int provinceId){
+        QueryWrapper<Statistics> qw = new QueryWrapper<>();
+        qw.eq("province_id", provinceId);
+        return CommonResult.success(statisticsService.list(qw));
     }
 
 

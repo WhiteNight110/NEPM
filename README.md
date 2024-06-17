@@ -119,6 +119,12 @@
 - 返回值：Admins对象
 - 功能：根据管理员编码和密码进行查询，用于登录
 
+2. admins/adminRegister
+
+- 参数：Admins对象
+- 返回值：String SUCCESS：注册成功  FAILED：用户已存在
+- 功能：管理员注册
+
 ## aqi
 
 1. aqi/listAqiAll 
@@ -267,14 +273,14 @@
 
 1. supervisor/getSupervisorById 
 
-- 参数：Supervisor对象
+- 参数：telId
 - 返回值：Supervisor对象
 - 功能：根据主键查询公众监督员，用于注册时手机号码是否存在验证
 
 2. supervisor/saveSupervisor 
 
 - 参数：Supervisor对象
-- 返回值：int
+- 返回值：Boolean
 - 功能：保存公众监督员信息，用于注册
 
 3. upervisor/getSupervisorByIdByPass 
