@@ -35,6 +35,16 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
     }
 
     @Override
+    public String adminRegister(Admins admins) {
+        Admins admin = adminsMapper.selectOne(new QueryWrapper<Admins>().eq("admin_code", admins.getAdminCode()));
+        if(admin != null){
+            adminsMapper.insert(admins);
+            return "SUCCESS";
+        }
+        else return "FAILED";
+    }
+
+    @Override
     public int adminsInsert(Admins admins) {
         return adminsMapper.insert(admins);
     }

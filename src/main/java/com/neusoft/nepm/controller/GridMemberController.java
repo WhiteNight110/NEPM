@@ -1,19 +1,13 @@
 package com.neusoft.nepm.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neusoft.nepm.common.api.CommonResult;
-import com.neusoft.nepm.po.GridCity;
 import com.neusoft.nepm.po.GridMember;
-import com.neusoft.nepm.service.GridCityService;
 import com.neusoft.nepm.service.GridMemberService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,12 +29,8 @@ public class GridMemberController {
     }
 
     @ResponseBody
-    @GetMapping("/getGridMemberByCodeByPass")
-    public CommonResult<String> getGridMemberByCodeByPass(@RequestParam String gmCode,@RequestParam String password){
-        GridMember gridMember = new GridMember();
-        gridMember.setGmCode(gmCode);
-        gridMember.setPassword(password);
-
+    @PostMapping("/getGridMemberByCodeByPass")
+    public CommonResult<String> getGridMemberByCodeByPass(@RequestBody GridMember gridMember){
         String msg = gridMemberService.gridMemberLogin(gridMember);
         if(("SUCCESS").equals(msg)){
             return CommonResult.success("登录成功");

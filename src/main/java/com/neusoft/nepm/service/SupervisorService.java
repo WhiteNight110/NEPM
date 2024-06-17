@@ -13,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SupervisorService extends IService<Supervisor> {
 
+    /**
+     * 根据公众监督员手机号码和密码查询，用于登录。
+     * @param supervisor
+     * @return success failed
+     */
+    String supervisorLogin(Supervisor supervisor);
+
 }

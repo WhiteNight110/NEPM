@@ -19,5 +19,7 @@ public interface AdminsService extends IService<Admins> {
      */
     String adminsLogin(Admins admins);
 
+    String adminRegister(Admins admins);
+
     int adminsInsert(Admins admins);
 }
