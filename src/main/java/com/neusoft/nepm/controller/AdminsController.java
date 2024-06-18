@@ -26,18 +26,20 @@ public class AdminsController {
     public CommonResult<String> getAdminsByCode(@RequestBody Admins admins){
 
         String msg = adminsService.adminsLogin(admins);
-        if(("SUCCESS").equals(msg)){
-            return CommonResult.success("登录成功");
+        if(("FAILED").equals(msg)){
+            return CommonResult.fail("用户名或密码有误");
+
         }
         else{
-            return CommonResult.fail("用户名或密码有误");
+            return CommonResult.success(msg);
         }
     }
 
     @ApiOperation("管理员注册")
-    @PostMapping("/adminRegister")
+    @PostMapping("/adminsRegister")
+    @ResponseBody
     public CommonResult<String> adminRegister(@RequestBody Admins admins){
-        String msg = adminsService.adminsLogin(admins);
+        String msg = adminsService.adminRegister(admins);
         if(("SUCCESS").equals(msg)){
             return CommonResult.success("注册成功");
         }

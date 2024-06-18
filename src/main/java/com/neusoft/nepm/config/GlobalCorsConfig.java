@@ -17,19 +17,22 @@ public class GlobalCorsConfig {
      */
     @Bean
     public CorsFilter corsFilter() {
+        //1. 添加 CORS配置信息
         CorsConfiguration config = new CorsConfiguration();
-        //允许所有域名进行跨域调用
-        config.addAllowedOriginPattern("*");
-        //该用法在SpringBoot 2.7.0中已不再支持
-        //config.addAllowedOrigin("*");
-        //允许跨越发送cookie
+        //放行哪些原始域
+        config.addAllowedOrigin("*");
+        //是否发送 Cookie
         config.setAllowCredentials(true);
-        //放行全部原始头信息
-        config.addAllowedHeader("*");
-        //允许所有请求方法跨域调用
+        //放行哪些请求方式
         config.addAllowedMethod("*");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
+        //放行哪些原始请求头部信息
+        config.addAllowedHeader("*");
+        //暴露哪些头部信息
+        config.addExposedHeader("*");
+        //2. 添加映射路径
+        UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        corsConfigurationSource.registerCorsConfiguration("/**",config);
+        //3. 返回新的CorsFilter
+        return new CorsFilter(corsConfigurationSource);
     }
 }

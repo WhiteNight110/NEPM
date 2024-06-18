@@ -48,20 +48,20 @@ redis:
       min-idle: 0 # 连接池中的最小空闲连接
   timeout: 3000ms # 连接超时时间（毫秒）
 
-#secure:
-#  ignored:
-#    urls: #安全路径白名单
-#      - /swagger-ui/
-#      - /swagger-resources/**
-#      - /**/v2/api-docs
-#      - /**/*.html
-#      - /**/*.js
-#      - /**/*.css
-#      - /**/*.png
-#      - /favicon.ico
-#      - /actuator/**
-#      - /druid/**
-#      - /admins/getAdminsByCode
-#      - /admin/register
-#      - /admin/info
-#      - /admin/logout
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /swagger-ui/
+      - /swagger-resources/**
+      - /**/v2/api-docs
+      - /**/*.html
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /favicon.ico
+      - /actuator/**
+      - /druid/**
+      - /admins/getAdminsByCode
+      - /admins/adminsRegister
+      - /admin/info
+      - /admin/logout
