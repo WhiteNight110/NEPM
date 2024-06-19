@@ -125,6 +125,18 @@
 - 返回值：String SUCCESS：注册成功  FAILED：用户已存在
 - 功能：管理员注册
 
+3. admins/getCaptcha
+
+- 参数：无
+- 返回值：图片验证码
+- 功能：获取验证码
+
+4. admins/adminRegister
+
+- 参数：String
+- 返回值：Boolean 验证结果
+- 功能：校验验证码
+
 ## aqi
 
 1. aqi/listAqiAll 

@@ -85,7 +85,7 @@ public class AdminsController {
         }
     }
 
-    @ApiOperation("验证验证码")
+    @ApiOperation("校验验证码")
     @RequestMapping("/checkCaptcha")
     public boolean checkCaptcha(String captcha, HttpSession session) {
         //保证传过来的参数是合法的
