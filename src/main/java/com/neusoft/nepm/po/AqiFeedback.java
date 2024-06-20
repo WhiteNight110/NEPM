@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
 
 /**
  * <p>
@@ -57,12 +59,12 @@ public class AqiFeedback implements Serializable {
     /**
      * 反馈日期
      */
-    private String afDate;
+    private Date afDate;
 
     /**
      * 反馈时间
      */
-    private String afTime;
+    private Time afTime;
 
     /**
      * 指派网格员编号
@@ -72,12 +74,12 @@ public class AqiFeedback implements Serializable {
     /**
      * 指派日期
      */
-    private String assignDate;
+    private Date assignDate;
 
     /**
      * 指派时间
      */
-    private String assignTime;
+    private Time assignTime;
 
     /**
      * 信息状态	0：未指派	1：已指派	2：已确认
@@ -138,18 +140,18 @@ public class AqiFeedback implements Serializable {
     public void setEstimatedGrade(Integer estimatedGrade) {
         this.estimatedGrade = estimatedGrade;
     }
-    public String getAfDate() {
+    public Date getAfDate() {
         return afDate;
     }
 
-    public void setAfDate(String afDate) {
+    public void setAfDate(Date afDate) {
         this.afDate = afDate;
     }
-    public String getAfTime() {
+    public Time getAfTime() {
         return afTime;
     }
 
-    public void setAfTime(String afTime) {
+    public void setAfTime(Time afTime) {
         this.afTime = afTime;
     }
     public Integer getGmId() {
@@ -159,18 +161,18 @@ public class AqiFeedback implements Serializable {
     public void setGmId(Integer gmId) {
         this.gmId = gmId;
     }
-    public String getAssignDate() {
+    public Date getAssignDate() {
         return assignDate;
     }
 
-    public void setAssignDate(String assignDate) {
+    public void setAssignDate(Date assignDate) {
         this.assignDate = assignDate;
     }
-    public String getAssignTime() {
+    public Time getAssignTime() {
         return assignTime;
     }
 
-    public void setAssignTime(String assignTime) {
+    public void setAssignTime(Time assignTime) {
         this.assignTime = assignTime;
     }
     public Integer getState() {

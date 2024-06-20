@@ -65,29 +65,40 @@
 
 ## 空气质量公众监督反馈表（aqi_feedback）
 
-| 名称            | 类型    | size | 说明                       |
-| --------------- | ------- | ---- | -------------------------- |
-| aqi_id          | int     |      | 空气质量指数级别（共六级） |
-| chinese_explain | varchar | 10   | 空气质量指数级别汉字描述   |
+| 名称            | 类型    | size | 说明                               |
+| --------------- | ------- | ---- | ---------------------------------- |
+| af_id           | int     |      | 空气质量公共监督反馈信息编号       |
+| tel_id          | varchar | 20   | 所属公共监督员编号（手机号码）     |
+| province_id     | int     |      | 反馈信息所在省区域编号             |
+| city_id         | int     |      | 反馈信息所在市区域编号             |
+| address         | varchar | 200  | 反馈信息所在区域详细地址           |
+| information     | varchar | 400  | 反馈信息描述                       |
+| estimated_grade | int     |      | 反馈者对空气质量指数级别的预估等级 |
+| af_date         | date    | 20   | 反馈日期                           |
+| af_time         | time    | 20   | 反馈时间                           |
+| gm_id           | int     |      | 指派网格员编号                     |
 
 ## 空气质量监测数据统计表（statistics）
 
-| 名称            | 类型    | size | 说明                                 |
-| --------------- | ------- | ---- | ------------------------------------ |
-| af_id           | int     |      | 空气质量公共监督反馈信息编号         |
-| tel_id          | varchar | 20   | 所属公共监督员编号（手机号码）       |
-| province_id     | int     |      | 反馈信息所在省区域编号               |
-| city_id         | int     |      | 反馈信息所在市区域编号               |
-| address         | varchar | 200  | 反馈信息所在区域详细地址             |
-| information     | varchar | 400  | 反馈信息描述                         |
-| estimated_grade | int     |      | 反馈者对空气质量指数级别的预估等级   |
-| af_date         | date    | 20   | 反馈日期                             |
-| af_time         | time    | 20   | 反馈时间                             |
-| gm_id           | int     |      | 指派网格员编号                       |
-| assign_date     | date    | 20   | 指派日期                             |
-| assign_time     | time    | 20   | 指派时间                             |
-| state           | int     |      | 信息状态：0 未指派 1 已指派 2 已确认 |
-| remarks         | varchar | 200  | 备注信息                             |
+| 名称         | 类型    | size | 说明                                  |
+| ------------ | ------- | ---- | ------------------------------------- |
+| id           | int     |      | 空气质量公共监督反馈信息编号          |
+| province_id  | int     |      | 反馈信息所在省区域编号                |
+| city_id      | int     |      | 反馈信息所在市区域编号                |
+| address      | varchar | 200  | 反馈信息所在区域详细地址              |
+| so2_value    | int     |      | 实测空气二氧化硫浓度值(单位：μg/m3)   |
+| so2_level    | int     |      | 空气二氧化硫指数级别                  |
+| co_value     | int     |      | 实测空气一氧化碳浓度值(单位：μg/m3)   |
+| co_level     | int     |      | 空气一氧化碳指数级别                  |
+| spm_value    | int     |      | 实测空气悬浮颗粒物浓度值(单位：μg/m3) |
+| spm_level    | int     |      | 空气PM2.5指数级别                     |
+| aqi_id       | int     |      | 实测空气质量指数级别                  |
+| confirm_date | date    |      | 确认日期                              |
+| confirm_time | time    |      | 确认时间                              |
+| gm_id        | int     |      | 所属网格员编号                        |
+| fd_id        | int     |      | 反馈者编号(公众监督员电话号码)        |
+| infomation   | varchar |      | 反馈信息描述                          |
+| remark       | varchar |      | 备注                                  |
 
 ## 系统管理员表（admins）
 

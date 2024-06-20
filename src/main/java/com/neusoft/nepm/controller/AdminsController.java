@@ -9,7 +9,6 @@ import com.neusoft.nepm.service.AdminsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,7 +61,7 @@ public class AdminsController {
     }
 
     @ApiOperation("获取验证码")
-    @RequestMapping("/getCaptcha")
+    @GetMapping("/getCaptcha")
     public void getCaptcha(HttpServletResponse response, HttpSession session) {
         //定义图形验证码的长和宽(配置默认值)
         LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(captchaProp.getWidth(), captchaProp.getHeight());
@@ -86,7 +85,7 @@ public class AdminsController {
     }
 
     @ApiOperation("校验验证码")
-    @RequestMapping("/checkCaptcha")
+    @GetMapping("/checkCaptcha")
     public boolean checkCaptcha(String captcha, HttpSession session) {
         //保证传过来的参数是合法的
         if (StringUtils.hasLength(captcha)) {

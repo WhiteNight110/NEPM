@@ -1,5 +1,6 @@
 package com.neusoft.nepm.mapper;
 
+import com.github.yulichang.base.MPJBaseMapper;
 import com.neusoft.nepm.po.Admins;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +13,7 @@ import org.apache.ibatis.annotations.Select;
  * @author crm
  * @since 2024-06-14
  */
-public interface AdminsMapper extends BaseMapper<Admins> {
+public interface AdminsMapper extends MPJBaseMapper<Admins> {
 
 
 }

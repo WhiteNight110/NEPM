@@ -40,7 +40,7 @@ public class Statistics implements Serializable {
     /**
      * 实测空气二氧化硫浓度值(单位：μg/m3)
      */
-    private Integer so2Value;
+    private Double so2Value;
 
     /**
      * 空气二氧化硫指数级别
@@ -50,7 +50,7 @@ public class Statistics implements Serializable {
     /**
      * 实测空气一氧化碳浓度值(单位：μg/m3)
      */
-    private Integer coValue;
+    private Double coValue;
 
     /**
      * 空气一氧化碳指数级别
@@ -60,7 +60,7 @@ public class Statistics implements Serializable {
     /**
      * 实测空气悬浮颗粒物浓度值(单位：μg/m3)
      */
-    private Integer spmValue;
+    private Double spmValue;
 
     /**
      * 空气PM2.5指数级别
@@ -130,11 +130,11 @@ public class Statistics implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-    public Integer getSo2Value() {
+    public Double getSo2Value() {
         return so2Value;
     }
 
-    public void setSo2Value(Integer so2Value) {
+    public void setSo2Value(Double so2Value) {
         this.so2Value = so2Value;
     }
     public Integer getSo2Level() {
@@ -144,11 +144,11 @@ public class Statistics implements Serializable {
     public void setSo2Level(Integer so2Level) {
         this.so2Level = so2Level;
     }
-    public Integer getCoValue() {
+    public Double getCoValue() {
         return coValue;
     }
 
-    public void setCoValue(Integer coValue) {
+    public void setCoValue(Double coValue) {
         this.coValue = coValue;
     }
     public Integer getCoLevel() {
@@ -158,11 +158,11 @@ public class Statistics implements Serializable {
     public void setCoLevel(Integer coLevel) {
         this.coLevel = coLevel;
     }
-    public Integer getSpmValue() {
+    public Double getSpmValue() {
         return spmValue;
     }
 
-    public void setSpmValue(Integer spmValue) {
+    public void setSpmValue(Double spmValue) {
         this.spmValue = spmValue;
     }
     public Integer getSpmLevel() {

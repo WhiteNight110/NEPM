@@ -1,7 +1,9 @@
 package com.neusoft.nepm.service;
 
 import com.neusoft.nepm.common.api.CommonPage;
+import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.AfPageRequestDto;
+import com.neusoft.nepm.dto.AqiFeedbackResponseDto;
 import com.neusoft.nepm.po.AqiFeedback;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -34,7 +36,9 @@ public interface AqiFeedbackService extends IService<AqiFeedback> {
     /**
      * 分页查询 AqiFeedback
      * @param afPageRequestDto
-     * @return CommonPage<AqiFeedback>
+     * @return CommonPage<AqiFeedbackResponseDto>
      */
-    CommonPage<AqiFeedback> listAqiFeedback(AfPageRequestDto afPageRequestDto);
+//    CommonPage<AqiFeedback> listAqiFeedback(AfPageRequestDto afPageRequestDto);
+
+    CommonPage<AqiFeedbackResponseDto> listAqiFeedback(AfPageRequestDto afPageRequestDto);
 }
