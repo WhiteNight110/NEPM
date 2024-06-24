@@ -55,32 +55,32 @@ public class Aqi implements Serializable {
     /**
      * 本级别二氧化硫浓度最小限值
      */
-    private Integer so2Min;
+    private Double so2Min;
 
     /**
      * 本级别二氧化硫浓度最大限值
      */
-    private Integer so2Max;
+    private Double so2Max;
 
     /**
      * 本级别一氧化碳浓度最小限值
      */
-    private Integer coMin;
+    private Double coMin;
 
     /**
      * 本级别一氧化碳浓度最大限值
      */
-    private Integer coMax;
+    private Double coMax;
 
     /**
      * 本级别悬浮颗粒物浓度最小限值
      */
-    private Integer spmMin;
+    private Double spmMin;
 
     /**
      * 本级别悬浮颗粒物浓度最大限值
      */
-    private Integer spmMax;
+    private Double spmMax;
 
     /**
      * 备注
@@ -136,46 +136,46 @@ public class Aqi implements Serializable {
     public void setTakeSteps(String takeSteps) {
         this.takeSteps = takeSteps;
     }
-    public Integer getSo2Min() {
+    public Double getSo2Min() {
         return so2Min;
     }
 
-    public void setSo2Min(Integer so2Min) {
+    public void setSo2Min(Double so2Min) {
         this.so2Min = so2Min;
     }
-    public Integer getSo2Max() {
+    public Double getSo2Max() {
         return so2Max;
     }
 
-    public void setSo2Max(Integer so2Max) {
+    public void setSo2Max(Double so2Max) {
         this.so2Max = so2Max;
     }
-    public Integer getCoMin() {
+    public Double getCoMin() {
         return coMin;
     }
 
-    public void setCoMin(Integer coMin) {
+    public void setCoMin(Double coMin) {
         this.coMin = coMin;
     }
-    public Integer getCoMax() {
+    public Double getCoMax() {
         return coMax;
     }
 
-    public void setCoMax(Integer coMax) {
+    public void setCoMax(Double coMax) {
         this.coMax = coMax;
     }
-    public Integer getSpmMin() {
+    public Double getSpmMin() {
         return spmMin;
     }
 
-    public void setSpmMin(Integer spmMin) {
+    public void setSpmMin(Double spmMin) {
         this.spmMin = spmMin;
     }
-    public Integer getSpmMax() {
+    public Double getSpmMax() {
         return spmMax;
     }
 
-    public void setSpmMax(Integer spmMax) {
+    public void setSpmMax(Double spmMax) {
         this.spmMax = spmMax;
     }
     public String getRemarks() {

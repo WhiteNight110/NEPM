@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.AfPageRequestDto;
+import com.neusoft.nepm.dto.AqiFeedbackResponseDto;
 import com.neusoft.nepm.po.Aqi;
 import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.service.AqiFeedbackService;
@@ -38,11 +39,18 @@ public class AqiFeedbackController {
         return CommonResult.success(aqiFeedbackList);
     }
 
+//    @ResponseBody
+//    @GetMapping("/listAqiFeedbackPage")
+//    public CommonResult<CommonPage<AqiFeedback>> listAqiFeedbackPage(@RequestBody AfPageRequestDto afPageRequestDto){
+//        return CommonResult.success(aqiFeedbackService.listAqiFeedback(afPageRequestDto));
+//
+//    }
+
     @ResponseBody
     @GetMapping("/listAqiFeedbackPage")
-    public CommonResult<CommonPage<AqiFeedback>> listAqiFeedbackPage(@RequestBody AfPageRequestDto afPageRequestDto){
-        return CommonResult.success(aqiFeedbackService.listAqiFeedback(afPageRequestDto));
+    public CommonResult<CommonPage<AqiFeedbackResponseDto>> listAqiFeedbackPage(@RequestBody AfPageRequestDto afPageRequestDto){
 
+        return CommonResult.success(aqiFeedbackService.listAqiFeedback(afPageRequestDto));
     }
 
     @ResponseBody

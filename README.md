@@ -13,7 +13,7 @@
 
 # 数据库设计
 
-## aqi 空气质量指数级别表
+## 空气质量指数级别表（aqi）
 
 | 名称            | 类型    | size | 说明                         |
 | --------------- | ------- | ---- | ---------------------------- |
@@ -43,7 +43,7 @@
 | city_id     | int     |      | 网格区域：市编号                                  |
 | tel         | varchar | 20   | 联系电话                                          |
 | state       | int     |      | 网格员状态：0 可工作状态 1 临时抽调 2 休假 3 其他 |
-| remarks     | varchar | 200  | 备注                                              |
+| remarks     | varchar | 200  | 备注信息                                          |
 
 ## 系统网格覆盖省区域表（grid_province）
 
@@ -51,8 +51,8 @@
 | ------------- | ------- | ---- | ---------------------- |
 | province_id   | int     |      | 系统网格覆盖省区域编号 |
 | province_name | varchar | 20   | 系统网格覆盖省区域名称 |
-| province_abbr | varchar | 2    | 系统网格覆盖省区域简称 |
-| remarks       | varchar | 200  | 备注                   |
+| province_abbr | varchar | 20   | 系统网格覆盖省区域简称 |
+| remarks       | varchar | 200  | 备注信息               |
 
 ## 系统网格覆盖市区域表（grid_city）
 
@@ -61,33 +61,44 @@
 | city_id     | int     |      | 系统网格覆盖市区域编号 |
 | city_name   | varchar | 20   | 系统网格覆盖市区域名称 |
 | province_id | int     |      | 所属省区域编号         |
-| remarks     | varchar | 20o  | 备注                   |
+| remarks     | varchar | 20o  | 备注信息               |
 
 ## 空气质量公众监督反馈表（aqi_feedback）
 
-| 名称            | 类型    | size | 说明                       |
-| --------------- | ------- | ---- | -------------------------- |
-| aqi_id          | int     |      | 空气质量指数级别（共六级） |
-| chinese_explain | varchar | 10   | 空气质量指数级别汉字描述   |
+| 名称            | 类型    | size | 说明                               |
+| --------------- | ------- | ---- | ---------------------------------- |
+| af_id           | int     |      | 空气质量公共监督反馈信息编号       |
+| tel_id          | varchar | 20   | 所属公共监督员编号（手机号码）     |
+| province_id     | int     |      | 反馈信息所在省区域编号             |
+| city_id         | int     |      | 反馈信息所在市区域编号             |
+| address         | varchar | 200  | 反馈信息所在区域详细地址           |
+| information     | varchar | 400  | 反馈信息描述                       |
+| estimated_grade | int     |      | 反馈者对空气质量指数级别的预估等级 |
+| af_date         | date    | 20   | 反馈日期                           |
+| af_time         | time    | 20   | 反馈时间                           |
+| gm_id           | int     |      | 指派网格员编号                     |
 
 ## 空气质量监测数据统计表（statistics）
 
-| 名称            | 类型    | size | 说明                                 |
-| --------------- | ------- | ---- | ------------------------------------ |
-| af_id           | int     |      | 空气质量公共监督反馈信息编号         |
-| tel_id          | varchar | 20   | 所属公共监督员编号（手机号码）       |
-| province_id     | int     |      | 反馈信息所在省区域编号               |
-| city_id         | int     |      | 反馈信息所在市区域编号               |
-| address         | varchar | 200  | 反馈信息所在区域详细地址             |
-| information     | varchar | 400  | 反馈信息描述                         |
-| estimated_grade | int     |      | 反馈者对空气质量指数级别的预估等级   |
-| af_date         | varchar | 20   | 反馈日期                             |
-| af_time         | varchar | 20   | 反馈时间                             |
-| gm_id           | int     |      | 指派网格员编号                       |
-| assign_date     | varchar | 20   | 指派日期                             |
-| assign_time     | varchar | 20   | 指派时间                             |
-| state           | int     |      | 信息状态：0 未指派 1 已指派 2 已确认 |
-| remarks         | varchar | 200  | 备注                                 |
+| 名称         | 类型    | size | 说明                                  |
+| ------------ | ------- | ---- | ------------------------------------- |
+| id           | int     |      | 空气质量公共监督反馈信息编号          |
+| province_id  | int     |      | 反馈信息所在省区域编号                |
+| city_id      | int     |      | 反馈信息所在市区域编号                |
+| address      | varchar | 200  | 反馈信息所在区域详细地址              |
+| so2_value    | int     |      | 实测空气二氧化硫浓度值(单位：μg/m3)   |
+| so2_level    | int     |      | 空气二氧化硫指数级别                  |
+| co_value     | int     |      | 实测空气一氧化碳浓度值(单位：μg/m3)   |
+| co_level     | int     |      | 空气一氧化碳指数级别                  |
+| spm_value    | int     |      | 实测空气悬浮颗粒物浓度值(单位：μg/m3) |
+| spm_level    | int     |      | 空气PM2.5指数级别                     |
+| aqi_id       | int     |      | 实测空气质量指数级别                  |
+| confirm_date | date    |      | 确认日期                              |
+| confirm_time | time    |      | 确认时间                              |
+| gm_id        | int     |      | 所属网格员编号                        |
+| fd_id        | int     |      | 反馈者编号(公众监督员电话号码)        |
+| infomation   | varchar |      | 反馈信息描述                          |
+| remark       | varchar |      | 备注                                  |
 
 ## 系统管理员表（admins）
 
@@ -96,18 +107,18 @@
 | admin_id   | int     |      | 系统管理员编号     |
 | admin_code | varchar | 20   | 系统管理员登录编码 |
 | password   | varchar | 20   | 系统管理员登陆密码 |
-| remarks    | varchar | 100  | 备注               |
+| remarks    | varchar | 100  | 备注信息           |
 
 ## 公众监督员表（supervisor）
 
-| 名称      | 类型    | size | 说明                       |
-| --------- | ------- | ---- | -------------------------- |
-| tel_id    | varchar | 11   | 公共监督员编号（手机号码） |
-| password  | varchar | 20   | 公共监督员登陆密码         |
-| real_name | varchar | 20   | 公共监督员真实姓名         |
-| birthday  | varchar | 20   | 公共监督员出生日期         |
-| sex       | int     |      | 公共监督员性别 1 男 0 女   |
-| remarks   | varchar | 100  | 备注                       |
+| 名称      | 类型     | size | 说明                       |
+| --------- | -------- | ---- | -------------------------- |
+| tel_id    | varchar  | 11   | 公共监督员编号（手机号码） |
+| password  | varchar  | 20   | 公共监督员登陆密码         |
+| real_name | varchar  | 20   | 公共监督员真实姓名         |
+| birthday  | datetime |      | 公共监督员出生日期         |
+| sex       | int      |      | 公共监督员性别 1 男 0 女   |
+| remarks   | varchar  | 100  | 备注信息                   |
 
 # 服务器端接口API
 
@@ -124,6 +135,18 @@
 - 参数：Admins对象
 - 返回值：String SUCCESS：注册成功  FAILED：用户已存在
 - 功能：管理员注册
+
+3. admins/getCaptcha
+
+- 参数：无
+- 返回值：图片验证码
+- 功能：获取验证码
+
+4. admins/adminRegister
+
+- 参数：String
+- 返回值：Boolean 验证结果
+- 功能：校验验证码
 
 ## aqi
 

@@ -15,10 +15,11 @@ public class AfPageRequestDto{
 
     private int page = 1;
     private int size = 5;
-    private int provinceId;
-    private int cityId;
-    private int estimatedId;
+    private String provinceName;
+    private String cityName;
+    private int estimatedGrade;
     private int state;
+    private String telId;
 
 //    后续添加针对时间的查询
 

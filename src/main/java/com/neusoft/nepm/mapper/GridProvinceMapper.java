@@ -1,5 +1,6 @@
 package com.neusoft.nepm.mapper;
 
+import com.github.yulichang.base.MPJBaseMapper;
 import com.neusoft.nepm.po.GridProvince;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -11,6 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author crm
  * @since 2024-06-14
  */
-public interface GridProvinceMapper extends BaseMapper<GridProvince> {
+public interface GridProvinceMapper extends MPJBaseMapper<GridProvince> {
 
 }

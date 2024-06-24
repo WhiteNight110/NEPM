@@ -1,7 +1,9 @@
 package com.neusoft.nepm.service;
 
+import com.neusoft.nepm.common.api.ValidateCodeVo;
 import com.neusoft.nepm.po.Admins;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
@@ -20,6 +22,10 @@ public interface AdminsService extends IService<Admins> {
     String adminsLogin(Admins admins);
 
     String adminRegister(Admins admins);
+
+    ValidateCodeVo generateValidateCode();
+
+    boolean verifyValidateCode(String captcha, String codeKey);
 
     int adminsInsert(Admins admins);
 }

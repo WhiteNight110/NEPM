@@ -1,5 +1,6 @@
 package com.neusoft.nepm.mapper;
 
+import com.github.yulichang.base.MPJBaseMapper;
 import com.neusoft.nepm.po.AqiFeedback;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -13,6 +14,6 @@ import java.util.List;
  * @author crm
  * @since 2024-06-14
  */
-public interface AqiFeedbackMapper extends BaseMapper<AqiFeedback> {
+public interface AqiFeedbackMapper extends MPJBaseMapper<AqiFeedback> {
 
 }

@@ -1,24 +1,32 @@
 package com.neusoft.nepm.controller;
 
-import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
+import com.neusoft.nepm.common.api.ValidateCodeVo;
+import com.neusoft.nepm.config.CaptchaProperties;
 import com.neusoft.nepm.po.Admins;
-import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.service.AdminsService;
-import com.neusoft.nepm.service.impl.AdminsServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@CrossOrigin(origins = "*")
+@RestController
 @Api(tags = "AdminController", description = "管理员端")
 @RequestMapping("/admins")
 public class AdminsController {
+
     @Autowired
     private AdminsService adminsService;
+
+    @Autowired
+    private CaptchaProperties captchaProp;
+
+
+
+    //验证码生效时间限制
+    private static final long VALID_MILLIS_TIME = 60 * 1000;
+
 
     @ApiOperation("根据管理员编码和密码进行查询，用于登录")
     @PostMapping("/getAdminsByCode")
@@ -28,7 +36,6 @@ public class AdminsController {
         String msg = adminsService.adminsLogin(admins);
         if(("FAILED").equals(msg)){
             return CommonResult.fail("用户名或密码有误");
-
         }
         else{
             return CommonResult.success(msg);
@@ -48,6 +55,18 @@ public class AdminsController {
         }
     }
 
+    @ApiOperation("获取验证码")
+    @GetMapping("/getCaptcha")
+    @ResponseBody
+    public ValidateCodeVo getCaptcha(){
+        return adminsService.generateValidateCode();
+    }
+
+    @ApiOperation("校验验证码")
+    @PostMapping("/checkCaptcha")
+    public boolean checkCaptcha(@RequestParam String captcha, @RequestParam String codeKey) {
+        return adminsService.verifyValidateCode(captcha, codeKey);
+    }
 
 
 

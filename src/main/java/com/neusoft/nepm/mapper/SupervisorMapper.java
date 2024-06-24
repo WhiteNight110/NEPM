@@ -1,5 +1,6 @@
 package com.neusoft.nepm.mapper;
 
+import com.github.yulichang.base.MPJBaseMapper;
 import com.neusoft.nepm.po.Supervisor;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -11,6 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author crm
  * @since 2024-06-14
  */
-public interface SupervisorMapper extends BaseMapper<Supervisor> {
+public interface SupervisorMapper extends MPJBaseMapper<Supervisor> {
 
 }
