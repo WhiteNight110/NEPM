@@ -15,8 +15,8 @@ public class AfPageRequestDto{
 
     private int page = 1;
     private int size = 5;
-    private String provinceName;
-    private String cityName;
+    private int provinceId;
+    private int cityId;
     private int estimatedGrade;
     private int state;
     private String telId;

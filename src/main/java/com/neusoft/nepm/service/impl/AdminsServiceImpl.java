@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -59,17 +57,12 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
         // 参数：(明文，密文)
         boolean result = passwordEncoder.matches(admins.getPassword(), encodedPassword);
         if(result){
-//            System.out.println("==============");
-//            System.out.println(admin.getAdminId());
-//            System.out.println("================");
-
             // 生成令牌
             HashMap<String, Object> map = new HashMap<>(2);
             map.put("userId", admin.getAdminId());
             String token = JwtUtil.generateToken(map);
 
             return token;
-//            return "SUCCESS";
         }
         return "FAILED";
 

@@ -4,18 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.AfPageRequestDto;
-import com.neusoft.nepm.dto.AqiFeedbackResponseDto;
-import com.neusoft.nepm.po.Aqi;
+import com.neusoft.nepm.dto.AfPageResponseDto;
 import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.service.AqiFeedbackService;
-import com.neusoft.nepm.service.AqiService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.CookieManager;
 import java.util.List;
 
 @Controller
@@ -47,8 +44,11 @@ public class AqiFeedbackController {
 //    }
 
     @ResponseBody
-    @GetMapping("/listAqiFeedbackPage")
-    public CommonResult<CommonPage<AqiFeedbackResponseDto>> listAqiFeedbackPage(@RequestBody AfPageRequestDto afPageRequestDto){
+    @PostMapping("/listAqiFeedbackPage")
+    public CommonResult<CommonPage<AfPageResponseDto>> listAqiFeedbackPage(@RequestBody(required=false) AfPageRequestDto afPageRequestDto){
+        System.out.println("====service=====");
+        if(afPageRequestDto != null) System.out.println(afPageRequestDto.toString());
+
 
         return CommonResult.success(aqiFeedbackService.listAqiFeedback(afPageRequestDto));
     }
