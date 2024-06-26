@@ -11,6 +11,7 @@ import com.neusoft.nepm.po.*;
 import com.neusoft.nepm.mapper.AqiFeedbackMapper;
 import com.neusoft.nepm.service.AqiFeedbackService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import net.bytebuddy.implementation.bind.annotation.Super;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,23 +50,22 @@ public class AqiFeedbackServiceImpl extends ServiceImpl<AqiFeedbackMapper, AqiFe
     @Override
     public CommonPage<AfPageResponseDto> listAqiFeedback(AfPageRequestDto afPageRequestDto) {
         MPJLambdaWrapper<AqiFeedback> mpjLambdaWrapper = new MPJLambdaWrapper<AqiFeedback>()
-                .select(AqiFeedback::getAfId, AqiFeedback::getAfDate, AqiFeedback::getAfTime, AqiFeedback::getState, AqiFeedback::getState, AqiFeedback::getEstimatedGrade)
-                .selectAs(Supervisor::getRealName, AfPageResponseDto::getName)
+                .selectAll(AqiFeedback.class)
+                .selectAssociation(Supervisor.class, AfPageRequestDto::getSupervisor)
                 .leftJoin(Supervisor.class, Supervisor::getTelId, AqiFeedback::getTelId);
-
-
-        if (afPageRequestDto.getProvinceId() != 0) {
-            mpjLambdaWrapper.eq(GridProvince::getProvinceId, afPageRequestDto.getProvinceId());
+        if (afPageRequestDto.getProvinceId() != null) {
+            mpjLambdaWrapper.eq(AqiFeedback::getProvinceId, afPageRequestDto.getProvinceId());
         }
-        if (afPageRequestDto.getCityId() != 0) {
-            mpjLambdaWrapper.eq(GridCity::getCityId, afPageRequestDto.getCityId());
+        if (afPageRequestDto.getCityId() != null) {
+            mpjLambdaWrapper.eq(AqiFeedback::getCityId, afPageRequestDto.getCityId());
         }
-        if (afPageRequestDto.getEstimatedGrade() != 0) {
+        if (afPageRequestDto.getEstimatedGrade() != null) {
             mpjLambdaWrapper.eq(AqiFeedback::getEstimatedGrade, afPageRequestDto.getEstimatedGrade());
         }
-        if (afPageRequestDto.getState() != -1) {
-            mpjLambdaWrapper.eq("state", afPageRequestDto.getState());
+        if (afPageRequestDto.getState() != null) {
+            mpjLambdaWrapper.eq(AqiFeedback::getState, afPageRequestDto.getState());
         }
+
 
 //        System.out.println("===========");
 //        System.out.println(afPageRequestDto.toString());
