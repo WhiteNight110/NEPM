@@ -35,10 +35,10 @@ public class AdminsController {
 
         String msg = adminsService.adminsLogin(admins);
         if(("FAILED").equals(msg)){
-            return CommonResult.fail("用户名或密码有误");
+            return CommonResult.failed("用户名或密码有误");
         }
         else{
-            return CommonResult.success(msg);
+            return CommonResult.successWithString(msg);
         }
     }
 
@@ -47,11 +47,11 @@ public class AdminsController {
     @ResponseBody
     public CommonResult<String> adminRegister(@RequestBody Admins admins){
         String msg = adminsService.adminRegister(admins);
-        if(("SUCCESS").equals(msg)){
-            return CommonResult.success("注册成功");
+        if(("FAILED").equals(msg)){
+            return CommonResult.failed("用户已存在");
         }
         else{
-            return CommonResult.fail("用户已存在");
+            return CommonResult.success("注册成功");
         }
     }
 

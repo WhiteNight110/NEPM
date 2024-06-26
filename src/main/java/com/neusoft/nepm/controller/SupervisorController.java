@@ -1,6 +1,7 @@
 package com.neusoft.nepm.controller;
 
 import com.neusoft.nepm.common.api.CommonResult;
+import com.neusoft.nepm.common.api.ResultCode;
 import com.neusoft.nepm.po.Supervisor;
 import com.neusoft.nepm.service.SupervisorService;
 import io.swagger.annotations.Api;
@@ -26,8 +27,13 @@ public class SupervisorController {
     @ApiOperation("保存公众监督员信息，用于注册")
     @ResponseBody
     @PostMapping("/saveSupervisor")
-    public CommonResult<Boolean> saveSupervisor(@RequestBody Supervisor supervisor){
-        return CommonResult.success(supervisorService.save(supervisor));
+    public CommonResult<String> saveSupervisor(@RequestBody Supervisor supervisor){
+        String msg = supervisorService.supervisorRegister(supervisor);
+        if(("SUCCESS").equals(msg)){
+            return CommonResult.success("注册成功");
+        }else{
+            return CommonResult.failed("用户名已注册");
+        }
     }
 
     @ApiOperation("根据公众监督员手机号码和密码查询，用于登录。")
@@ -35,11 +41,11 @@ public class SupervisorController {
     @PostMapping("/getSupervisorByIdByPass")
     public CommonResult<String> getSupervisorByIdByPass(@RequestBody Supervisor supervisor){
         String msg = supervisorService.supervisorLogin(supervisor);
-        if(("SUCCESS").equals(msg)){
-            return CommonResult.success("登录成功");
+        if(("FAILED").equals(msg)){
+            return CommonResult.failed("用户名或密码有误");
         }
         else{
-            return CommonResult.fail("用户名或密码有误");
+            return CommonResult.successWithString(msg);
         }
     }
 

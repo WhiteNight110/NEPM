@@ -36,7 +36,7 @@ public class GridMemberController {
             return CommonResult.success("登录成功");
         }
         else{
-            return CommonResult.fail("用户名或密码有误");
+            return CommonResult.failed("用户名或密码有误");
         }
     }
 

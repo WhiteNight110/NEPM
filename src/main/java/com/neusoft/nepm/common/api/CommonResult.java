@@ -26,7 +26,16 @@ public class CommonResult<T> {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
-    public static <T> CommonResult<T> fail(T data) {
+    public static <T> CommonResult<T> success(String message) {
+        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, null);
+    }
+
+    // 为了方便，你可以重载一个特定于String类型的方法
+    public static CommonResult<String> successWithString(String data) {
+        return new CommonResult<String>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+    }
+
+    public static <T> CommonResult<T> failed(T data) {
         return new CommonResult<T>(ResultCode.FAILED.getCode(), ResultCode.FAILED.getMessage(), data);
     }
 
