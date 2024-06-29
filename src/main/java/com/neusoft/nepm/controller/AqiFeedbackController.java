@@ -75,7 +75,7 @@ public class AqiFeedbackController {
     @ApiOperation("根据网格员编号查询指派给网格员的AQI反馈信息")
     @GetMapping("/listAqiFeedbackByGmId")
     @ResponseBody
-    public CommonResult<List<AqiFeedback>> listAqiFeedbackByGmId(int gmId){
+    public CommonResult<List<AqiFeedback>> listAqiFeedbackByGmId(Integer gmId){
         QueryWrapper<AqiFeedback> qw = new QueryWrapper<>();
         qw.eq("gm_id", gmId);
         List<AqiFeedback> aqiFeedbackList = aqiFeedbackService.list(qw);

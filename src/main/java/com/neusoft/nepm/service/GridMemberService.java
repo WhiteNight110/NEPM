@@ -14,4 +14,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface GridMemberService extends IService<GridMember> {
 
     String gridMemberLogin(GridMember gridMember);
+    Integer getGridMemberId(GridMember gridMember);
+    String gmRegister(GridMember gridMember);
+
+
 }

@@ -5,6 +5,7 @@ import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.po.GridMember;
 import com.neusoft.nepm.service.GridMemberService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class GridMemberController {
 
     @ResponseBody
     @GetMapping("/listGridMemberByProvinceId")
-    public CommonResult<List<GridMember>> listGridMemberByProvinceId(@RequestParam int provinceId){
+    public CommonResult<List<GridMember>> listGridMemberByProvinceId(@RequestParam Integer provinceId){
         QueryWrapper<GridMember> qw = new QueryWrapper<>();
         qw.eq("province_id", provinceId);
         List<GridMember> gridMembers = gridMemberService.list(qw);
@@ -29,14 +30,37 @@ public class GridMemberController {
     }
 
     @ResponseBody
+    @GetMapping("/listGridMemberByCityId")
+    public CommonResult<List<GridMember>> listGridMemberByCityId(@RequestParam Integer cityId){
+        QueryWrapper<GridMember> qw = new QueryWrapper<>();
+        qw.eq("city_id", cityId);
+        List<GridMember> gridMembers = gridMemberService.list(qw);
+        return CommonResult.success(gridMembers);
+    }
+
+    @ResponseBody
     @PostMapping("/getGridMemberByCodeByPass")
-    public CommonResult<String> getGridMemberByCodeByPass(@RequestBody GridMember gridMember){
+    public CommonResult<Integer> getGridMemberByCodeByPass(@RequestBody GridMember gridMember){
         String msg = gridMemberService.gridMemberLogin(gridMember);
-        if(("SUCCESS").equals(msg)){
-            return CommonResult.success("登录成功");
+        if(("FAILED").equals(msg)){
+            return CommonResult.failed("用户名或密码有误");
         }
         else{
-            return CommonResult.failed("用户名或密码有误");
+
+            return CommonResult.success(gridMemberService.getGridMemberId(gridMember), msg);
+        }
+    }
+
+    @ApiOperation("网格员注册")
+    @PostMapping("/gridMemberRegister")
+    @ResponseBody
+    public CommonResult<String> gmRegister(@RequestBody GridMember gridMember){
+        String msg = gridMemberService.gmRegister(gridMember);
+        if(("FAILED").equals(msg)){
+            return CommonResult.failed("用户已存在");
+        }
+        else{
+            return CommonResult.success("注册成功");
         }
     }
 

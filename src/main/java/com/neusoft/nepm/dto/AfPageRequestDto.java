@@ -28,5 +28,5 @@ public class AfPageRequestDto{
 
     private Supervisor supervisor;
 //    后续添加针对时间的查询
-
+    private Date afDate;
 }

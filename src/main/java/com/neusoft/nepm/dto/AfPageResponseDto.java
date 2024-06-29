@@ -44,7 +44,7 @@ public class AfPageResponseDto {
     /**
      * 反馈日期
      */
-    private Date afDate;
+    private String afDate;
 
     /**
      * 反馈时间
@@ -59,7 +59,7 @@ public class AfPageResponseDto {
     /**
      * 指派日期
      */
-    private Date assignDate;
+    private String assignDate;
 
     /**
      * 指派时间

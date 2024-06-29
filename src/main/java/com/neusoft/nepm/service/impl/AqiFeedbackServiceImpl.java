@@ -15,6 +15,9 @@ import net.bytebuddy.implementation.bind.annotation.Super;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -65,7 +68,10 @@ public class AqiFeedbackServiceImpl extends ServiceImpl<AqiFeedbackMapper, AqiFe
         if (afPageRequestDto.getState() != null) {
             mpjLambdaWrapper.eq(AqiFeedback::getState, afPageRequestDto.getState());
         }
+        if(afPageRequestDto.getAfDate() != null) {
 
+            mpjLambdaWrapper.eq(AqiFeedback::getAfDate, afPageRequestDto.getAfDate());
+        }
 
 //        System.out.println("===========");
 //        System.out.println(afPageRequestDto.toString());

@@ -184,6 +184,12 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
+<!--        &lt;!&ndash;依赖，因为这里只用到了注解，所以只需要annotations就可以了&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--            <artifactId>jackson-annotations</artifactId>-->
+<!--            <version>2.9.2</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
