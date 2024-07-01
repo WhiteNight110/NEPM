@@ -5,6 +5,7 @@ import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.AfPageRequestDto;
 import com.neusoft.nepm.dto.AfPageResponseDto;
+import com.neusoft.nepm.dto.AfResponseDto;
 import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.service.AqiFeedbackService;
 import io.swagger.annotations.Api;
@@ -55,8 +56,10 @@ public class AqiFeedbackController {
 
     @ResponseBody
     @GetMapping("/getAqiFeedbackById")
-    public AqiFeedback getAqiFeedbackById(@RequestParam int afId){
-        return aqiFeedbackService.getById(afId);
+    public CommonResult<AfResponseDto> getAqiFeedbackById(@RequestParam int afId){
+
+        return CommonResult.success(aqiFeedbackService.aqiFeedbackDetail(afId));
+
     }
 
     /**
@@ -81,5 +84,6 @@ public class AqiFeedbackController {
         List<AqiFeedback> aqiFeedbackList = aqiFeedbackService.list(qw);
         return CommonResult.success(aqiFeedbackList);
     }
+
 
 }

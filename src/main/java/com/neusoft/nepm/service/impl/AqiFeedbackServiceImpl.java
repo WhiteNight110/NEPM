@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import com.neusoft.nepm.common.api.CommonPage;
+import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.AfPageRequestDto;
 import com.neusoft.nepm.dto.AfPageResponseDto;
+import com.neusoft.nepm.dto.AfResponseDto;
 import com.neusoft.nepm.mapper.GridProvinceMapper;
 import com.neusoft.nepm.po.*;
 import com.neusoft.nepm.mapper.AqiFeedbackMapper;
@@ -73,51 +75,33 @@ public class AqiFeedbackServiceImpl extends ServiceImpl<AqiFeedbackMapper, AqiFe
             mpjLambdaWrapper.eq(AqiFeedback::getAfDate, afPageRequestDto.getAfDate());
         }
 
-//        System.out.println("===========");
-//        System.out.println(afPageRequestDto.toString());
 
         Page<AfPageResponseDto> page = aqiFeedbackMapper.selectJoinPage(new Page<>(afPageRequestDto.getPage(), afPageRequestDto.getSize()), AfPageResponseDto.class, mpjLambdaWrapper);
 
         return CommonPage.restPage(page);
     }
 
-//    @Override
-//    public CommonPage<AfPageResponseDto> listAqiFeedback(AfPageRequestDto afPageRequestDto) {
-//
-//        MPJLambdaWrapper<AqiFeedback> mpjLambdaWrapper = new MPJLambdaWrapper<AqiFeedback>()
-//                .select(AqiFeedback::getAfId, AqiFeedback::getAfDate, AqiFeedback::getAfTime, AqiFeedback::getState, AqiFeedback::getState, AqiFeedback::getEstimatedGrade)
-//                .select(GridProvince::getProvinceName)
-//                .select(GridCity::getCityName)
-//                .selectAs(Supervisor::getRealName, AfPageResponseDto::getName)
-//                .leftJoin(GridProvince.class, GridProvince::getProvinceId,  AqiFeedback::getProvinceId)
-//                .leftJoin(GridProvince.class, GridProvince::getProvinceId, AqiFeedback::getProvinceId)
-//                .leftJoin(GridCity.class, GridCity::getCityId, AqiFeedback::getCityId)
-//                .leftJoin(Supervisor.class, Supervisor::getTelId, AqiFeedback::getTelId);
-//
-//        if(afPageRequestDto != null) {
-//            if (afPageRequestDto.getProvinceName() != "" && afPageRequestDto.getProvinceName() != null) {
-//                mpjLambdaWrapper.eq(GridProvince::getProvinceName, afPageRequestDto.getProvinceName());
-//            }
-//            if (afPageRequestDto.getCityName() != "" && afPageRequestDto.getCityName() != null) {
-//                mpjLambdaWrapper.eq(GridCity::getCityName, afPageRequestDto.getCityName());
-//            }
-//            if (afPageRequestDto.getEstimatedGrade() != 0) {
-//                mpjLambdaWrapper.eq(AqiFeedback::getEstimatedGrade, afPageRequestDto.getEstimatedGrade());
-//            }
-//            if (afPageRequestDto.getEstimatedGrade() != -1) {
-//                mpjLambdaWrapper.eq("state", afPageRequestDto.getState());
-//            }
-//        }else{
-//            afPageRequestDto = new AfPageRequestDto();
-//        }
-////        System.out.println("===========");
-////        System.out.println(afPageRequestDto.toString());
-//
-//        Page<AfPageResponseDto> page = aqiFeedbackMapper.selectJoinPage(new Page<>(afPageRequestDto.getPage(), afPageRequestDto.getSize()), AfPageResponseDto.class, mpjLambdaWrapper);
-//
-//        return CommonPage.restPage(page);
-//
-//    }
+    @Override
+    public AfResponseDto aqiFeedbackDetail(Integer afId) {
+        MPJLambdaWrapper<AqiFeedback> mpjLambdaWrapper = new MPJLambdaWrapper<AqiFeedback>()
+                .selectAll(AqiFeedback.class)
+                .selectAssociation(Supervisor.class, AfResponseDto::getSupervisor)
+                .selectAssociation(Aqi.class, AfResponseDto::getAqi)
+                .selectAssociation(GridProvince.class, AfResponseDto::getGridCity)
+                .selectAssociation(GridProvince.class, AfResponseDto::getGridProvince)
+                .leftJoin(Supervisor.class, Supervisor::getTelId, AqiFeedback::getTelId)
+                .leftJoin(Aqi.class, Aqi::getAqiId, AqiFeedback::getEstimatedGrade)
+                .leftJoin(GridProvince.class, GridProvince::getProvinceId, AqiFeedback::getProvinceId)
+                .leftJoin(GridCity.class, GridCity::getCityId, AqiFeedback::getCityId)
+                .eq("af_Id", afId);
 
+        List<AfResponseDto> res = aqiFeedbackMapper.selectJoinList(AfResponseDto.class, mpjLambdaWrapper);
+        if(res.get(0) != null){
+            return res.get(0);
+        }
+        else{
+            return null;
+        }
+    }
 
 }
