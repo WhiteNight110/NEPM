@@ -68,6 +68,9 @@ secure:
       - /admin/info
       - /admin/logout
 
+jackson:
+  data-format: yyyy-MM-dd HH:mm:ss
+  time-zone: GMT+8
 #jwt:
 #  tokenHeader: Authorization #JWT存储的请求头
 #  secret: mall-admin-secret #JWT加解密使用的密钥

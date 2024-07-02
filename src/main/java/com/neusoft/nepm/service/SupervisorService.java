@@ -20,4 +20,5 @@ public interface SupervisorService extends IService<Supervisor> {
      */
     String supervisorLogin(Supervisor supervisor);
 
+    String supervisorRegister(Supervisor supervisor);
 }

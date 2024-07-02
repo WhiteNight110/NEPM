@@ -4,18 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.AfPageRequestDto;
-import com.neusoft.nepm.dto.AqiFeedbackResponseDto;
-import com.neusoft.nepm.po.Aqi;
+import com.neusoft.nepm.dto.AfPageResponseDto;
+import com.neusoft.nepm.dto.AfResponseDto;
 import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.service.AqiFeedbackService;
-import com.neusoft.nepm.service.AqiService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.CookieManager;
 import java.util.List;
 
 @Controller
@@ -47,16 +45,21 @@ public class AqiFeedbackController {
 //    }
 
     @ResponseBody
-    @GetMapping("/listAqiFeedbackPage")
-    public CommonResult<CommonPage<AqiFeedbackResponseDto>> listAqiFeedbackPage(@RequestBody AfPageRequestDto afPageRequestDto){
+    @PostMapping("/listAqiFeedbackPage")
+    public CommonResult<CommonPage<AfPageResponseDto>> listAqiFeedbackPage(@RequestBody(required=false) AfPageRequestDto afPageRequestDto){
+        System.out.println("====service=====");
+        if(afPageRequestDto != null) System.out.println(afPageRequestDto.toString());
+
 
         return CommonResult.success(aqiFeedbackService.listAqiFeedback(afPageRequestDto));
     }
 
     @ResponseBody
     @GetMapping("/getAqiFeedbackById")
-    public AqiFeedback getAqiFeedbackById(@RequestParam int afId){
-        return aqiFeedbackService.getById(afId);
+    public CommonResult<AfResponseDto> getAqiFeedbackById(@RequestParam int afId){
+
+        return CommonResult.success(aqiFeedbackService.aqiFeedbackDetail(afId));
+
     }
 
     /**
@@ -75,11 +78,12 @@ public class AqiFeedbackController {
     @ApiOperation("根据网格员编号查询指派给网格员的AQI反馈信息")
     @GetMapping("/listAqiFeedbackByGmId")
     @ResponseBody
-    public CommonResult<List<AqiFeedback>> listAqiFeedbackByGmId(int gmId){
+    public CommonResult<List<AqiFeedback>> listAqiFeedbackByGmId(Integer gmId){
         QueryWrapper<AqiFeedback> qw = new QueryWrapper<>();
         qw.eq("gm_id", gmId);
         List<AqiFeedback> aqiFeedbackList = aqiFeedbackService.list(qw);
         return CommonResult.success(aqiFeedbackList);
     }
+
 
 }

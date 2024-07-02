@@ -3,6 +3,7 @@ package com.neusoft.nepm.po;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -35,7 +36,7 @@ public class Supervisor implements Serializable {
     /**
      * 公众监督员出生日期
      */
-    private String birthday;
+    private Date birthday;
 
     /**
      * 公众监督员性别(1：男；0：女)
@@ -68,11 +69,11 @@ public class Supervisor implements Serializable {
     public void setRealName(String realName) {
         this.realName = realName;
     }
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
     public Integer getSex() {

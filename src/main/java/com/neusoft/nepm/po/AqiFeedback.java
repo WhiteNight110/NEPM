@@ -3,6 +3,8 @@ package com.neusoft.nepm.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
@@ -59,6 +61,7 @@ public class AqiFeedback implements Serializable {
     /**
      * 反馈日期
      */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
     private Date afDate;
 
     /**
@@ -74,6 +77,7 @@ public class AqiFeedback implements Serializable {
     /**
      * 指派日期
      */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
     private Date assignDate;
 
     /**

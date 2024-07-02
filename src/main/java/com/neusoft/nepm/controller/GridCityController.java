@@ -25,7 +25,7 @@ public class GridCityController {
 
     @ResponseBody
     @GetMapping("/listGridCityByProvinceId")
-    public CommonResult<List<GridCity>> listGridCityByProvinceId(@RequestParam int provinceId){
+    public CommonResult<List<GridCity>> listGridCityByProvinceId(@RequestParam Integer provinceId){
         QueryWrapper<GridCity> qw = new QueryWrapper<>();
         qw.eq("province_id", provinceId);
         List<GridCity> aqiFeedbackList = gridCityService.list(qw);

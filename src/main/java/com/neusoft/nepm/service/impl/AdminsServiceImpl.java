@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
@@ -44,32 +42,22 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
     public String adminsLogin(Admins admins) {
 
         Admins admin = adminsMapper.selectOne(new QueryWrapper<Admins>().eq("admin_code", admins.getAdminCode()));
-
-//        System.out.println("===============================");
-
         if(admin == null){
             return "FAILED";
         }
 
         // 判断密码是否正确
         String encodedPassword = admin.getPassword();
-//        System.out.println(encodedPassword);
-//        System.out.println("===============================");
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         // 参数：(明文，密文)
         boolean result = passwordEncoder.matches(admins.getPassword(), encodedPassword);
         if(result){
-//            System.out.println("==============");
-//            System.out.println(admin.getAdminId());
-//            System.out.println("================");
-
             // 生成令牌
             HashMap<String, Object> map = new HashMap<>(2);
             map.put("userId", admin.getAdminId());
             String token = JwtUtil.generateToken(map);
 
             return token;
-//            return "SUCCESS";
         }
         return "FAILED";
 
