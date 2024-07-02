@@ -5,6 +5,7 @@ import cn.hutool.captcha.LineCaptcha;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neusoft.nepm.common.api.ValidateCodeVo;
 import com.neusoft.nepm.common.utils.JwtUtil;
+import com.neusoft.nepm.common.utils.Md5Utils;
 import com.neusoft.nepm.po.Admins;
 import com.neusoft.nepm.mapper.AdminsMapper;
 import com.neusoft.nepm.service.AdminsService;
@@ -47,10 +48,10 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
         }
 
         // 判断密码是否正确
-        String encodedPassword = admin.getPassword();
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String encodedPassword = admin.getPassword();
+//        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         // 参数：(明文，密文)
-        boolean result = passwordEncoder.matches(admins.getPassword(), encodedPassword);
+        boolean result = admin.getPassword().equals(Md5Utils.getMD5String(admins.getPassword()));
         if(result){
             // 生成令牌
             HashMap<String, Object> map = new HashMap<>(2);
@@ -68,10 +69,10 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
         Admins admin = adminsMapper.selectOne(new QueryWrapper<Admins>().eq("admin_code", admins.getAdminCode()));
         if(admin == null){
             // 密码加密
-            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String encodedPassword = passwordEncoder.encode(admins.getPassword());
-            admins.setPassword(encodedPassword);
-
+//            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//            String encodedPassword = passwordEncoder.encode(admins.getPassword());
+//            admins.setPassword(encodedPassword);
+            admins.setPassword(Md5Utils.getMD5String(admins.getPassword()));
             adminsMapper.insert(admins);
             return "SUCCESS";
         }
