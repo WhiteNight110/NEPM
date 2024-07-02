@@ -107,8 +107,8 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
         if (StringUtils.hasLength(captcha)) {
 
             String key = redisTemplate.opsForValue().get(codeKey).toString();
-            System.out.println("==============");
-            System.out.println(key);
+//            System.out.println("==============");
+//            System.out.println(key);
 
             if(key.equalsIgnoreCase(captcha)){
                 // 登录成功，删除Redis中的验证码

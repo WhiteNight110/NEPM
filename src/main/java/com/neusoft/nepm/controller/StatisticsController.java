@@ -26,7 +26,9 @@ public class StatisticsController {
     @ApiOperation("保存网格员提交的AQI确认信息")
     @ResponseBody
     @PostMapping("/saveStatistics")
-    public CommonResult<Boolean> saveStatistics(Statistics statistics){
+    public CommonResult<Boolean> saveStatistics(@RequestBody Statistics statistics){
+        System.out.println("=======test=======");
+        System.out.println(statistics);
         return CommonResult.success(statisticsService.save(statistics));
     }
 

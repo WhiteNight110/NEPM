@@ -102,6 +102,14 @@ public class Statistics implements Serializable {
      */
     private String remarks;
 
+    public Integer getAqiLevel() {
+        return aqiLevel;
+    }
+
+    public void setAqiLevel(Integer aqiLevel) {
+        this.aqiLevel = aqiLevel;
+    }
+
     public Integer getId() {
         return id;
     }
