@@ -5,15 +5,13 @@ import cn.hutool.captcha.LineCaptcha;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neusoft.nepm.common.api.ValidateCodeVo;
 import com.neusoft.nepm.common.utils.JwtUtil;
-import com.neusoft.nepm.common.utils.Md5Utils;
+import com.neusoft.nepm.common.utils.Md5Util;
 import com.neusoft.nepm.po.Admins;
 import com.neusoft.nepm.mapper.AdminsMapper;
 import com.neusoft.nepm.service.AdminsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -51,12 +49,17 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
 //        String encodedPassword = admin.getPassword();
 //        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         // 参数：(明文，密文)
-        boolean result = admin.getPassword().equals(Md5Utils.getMD5String(admins.getPassword()));
+        boolean result = admin.getPassword().equals(Md5Util.getMD5String(admins.getPassword()));
         if(result){
             // 生成令牌
             HashMap<String, Object> map = new HashMap<>(2);
             map.put("userId", admin.getAdminId());
             String token = JwtUtil.generateToken(map);
+
+            String codeKey = UUID.randomUUID().toString().replace("-", "");
+
+            redisTemplate.opsForValue().set("user:login:token:" + codeKey , token , 30 , TimeUnit.MINUTES);
+
 
             return token;
         }
@@ -72,7 +75,7 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
 //            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //            String encodedPassword = passwordEncoder.encode(admins.getPassword());
 //            admins.setPassword(encodedPassword);
-            admins.setPassword(Md5Utils.getMD5String(admins.getPassword()));
+            admins.setPassword(Md5Util.getMD5String(admins.getPassword()));
             adminsMapper.insert(admins);
             return "SUCCESS";
         }
@@ -107,9 +110,11 @@ public class AdminsServiceImpl extends ServiceImpl<AdminsMapper, Admins> impleme
         //保证传过来的参数是合法的
         if (StringUtils.hasLength(captcha)) {
 
-            String key = redisTemplate.opsForValue().get(codeKey).toString();
+            String key = redisTemplate.opsForValue().get(codeKey);
 //            System.out.println("==============");
 //            System.out.println(key);
+
+            assert key != null;
 
             if(key.equalsIgnoreCase(captcha)){
                 // 登录成功，删除Redis中的验证码
