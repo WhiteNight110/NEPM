@@ -23,9 +23,9 @@ public interface AdminsService extends IService<Admins> {
 
     String adminRegister(Admins admins);
 
-    ValidateCodeVo generateValidateCode();
-
-    boolean verifyValidateCode(String captcha, String codeKey);
+//    ValidateCodeVo generateValidateCode();
+//
+//    boolean verifyValidateCode(String captcha, String codeKey);
 
     int adminsInsert(Admins admins);
 }

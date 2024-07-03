@@ -5,6 +5,7 @@ import com.neusoft.nepm.common.api.ValidateCodeVo;
 import com.neusoft.nepm.config.CaptchaProperties;
 import com.neusoft.nepm.po.Admins;
 import com.neusoft.nepm.service.AdminsService;
+import com.neusoft.nepm.service.CaptchaService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class AdminsController {
 
     @Autowired
     private AdminsService adminsService;
+
+    @Autowired
+    private CaptchaService captchaService;
 
     @Autowired
     private CaptchaProperties captchaProp;
@@ -59,13 +63,13 @@ public class AdminsController {
     @GetMapping("/getCaptcha")
     @ResponseBody
     public ValidateCodeVo getCaptcha(){
-        return adminsService.generateValidateCode();
+        return captchaService.generateValidateCode();
     }
 
     @ApiOperation("校验验证码")
     @PostMapping("/checkCaptcha")
     public boolean checkCaptcha(@RequestParam String captcha, @RequestParam String codeKey) {
-        return adminsService.verifyValidateCode(captcha, codeKey);
+        return captchaService.verifyValidateCode(captcha, codeKey);
     }
 
 
