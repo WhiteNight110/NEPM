@@ -20,9 +20,9 @@ public class JwtUtil {
     private static final String TOKEN_PREFIX = "Bearer";
 
     /**
-     * 令牌过期时间
+     * 令牌过期时间 30分钟
      */
-    private static final Integer EXPIRE_SECONDS = 60 * 60 * 24 * 7;
+    private static final Integer EXPIRE_SECONDS = 60 * 30;
 
 
     /**

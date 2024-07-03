@@ -56,7 +56,7 @@ public class AqiFeedbackController {
 
     @ResponseBody
     @GetMapping("/getAqiFeedbackById")
-    public CommonResult<AfResponseDto> getAqiFeedbackById(@RequestParam int afId){
+    public CommonResult<AfResponseDto> getAqiFeedbackById(@RequestParam Integer afId){
 
         return CommonResult.success(aqiFeedbackService.aqiFeedbackDetail(afId));
 
