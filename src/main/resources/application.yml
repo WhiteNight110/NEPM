@@ -19,6 +19,25 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+  # 邮箱配置
+  mail:
+    host: smtp.qq.com
+    # 用户名 替换成你实际的用户名
+    username: 1368387047@qq.com
+    # 授权码 可以去官方申请 不是个人邮箱密码
+    password: pnlobzaviewfhihi
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    requested-heartbeat: 60s
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    template:
+      reply-timeout: 1800000
+
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:

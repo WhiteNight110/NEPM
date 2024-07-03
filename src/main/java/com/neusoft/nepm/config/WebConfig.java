@@ -15,10 +15,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
-                .addPathPatterns("/**") // 拦截所有请求
-                .excludePathPatterns("/nepm/admins/getAdminsByCode",
-                        "/nepm/admins/adminsRegister",
-                        "/nepm/admins/getCaptcha",
-                        "/nepm/admins/checkCaptcha"); // 排除不需要验证的路径
+                .addPathPatterns("/**/**") // 拦截所有请求
+                .excludePathPatterns("/admins/getAdminsByCode",
+                        "/admins/adminsRegister",
+                        "/captcha/getCaptcha",
+                        "/captcha/checkCaptcha",
+                        "/gridMember/gridMemberRegister",
+                        "/gridMember/getGridMemberByCodeByPass",
+                        "/mq/send"); // 排除不需要验证的路径
     }
 }
