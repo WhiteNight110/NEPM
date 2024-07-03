@@ -207,7 +207,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
-        <!-- thymeleaf -->
+        <!--Thymeleaf 静态模板jar包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -220,7 +220,6 @@
             <version>1.35.0.RC</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
@@ -231,6 +230,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.31</version>
+        </dependency>
+
 
     </dependencies>
 

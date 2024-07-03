@@ -1,25 +1,29 @@
 package com.neusoft.nepm.po;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 邮件
  */
-@Data
-@ToString
-public class Mail implements Serializable {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Mail {
 
-    private String mailId;
+    @Pattern(regexp = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$", message = "邮箱格式不正确")
+    private String to;
+
+    @NotBlank(message = "标题不能为空")
+    private String title;
+
+    @NotBlank(message = "正文不能为空")
     private String content;
 
-    public Mail() {
-    }
-
-    public Mail(String mailId, String content) {
-        this.mailId = mailId;
-        this.content = content;
-    }
+    private String msgId;// 消息id
 }
