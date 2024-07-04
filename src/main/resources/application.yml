@@ -112,8 +112,6 @@ jackson:
 
 leyou:
   sms:
-    accessKeyId: # 你自己的accessKeyId
-    accessKeySecret:  # 你自己的AccessKeySecret
     signName: NEPM实训项目 # 签名名称
     verifyCodeTemplate: SMS_468645353 # 模板名称CODE
 #jwt:
