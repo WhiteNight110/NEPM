@@ -24,6 +24,6 @@ public class WebConfig implements WebMvcConfigurer {
                         "/gridMember/getGridMemberByCodeByPass",
                         "/supervisor/saveSupervisor",
                         "/nepm/mq/send",
-                        "/mq/send"); // 排除不需要验证的路径
+                        "/mq/**"); // 排除不需要验证的路径
     }
 }

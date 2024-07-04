@@ -60,7 +60,7 @@ public class StatisticsController {
         return CommonResult.success(CommonPage.restPage(statisticsService.page(statisticsPage, qw)));
     }
 
-    @ApiOperation("根据主键查询确认AQI信息")
+    @ApiOperation("根据主键查询确认Statistics信息")
     @ResponseBody
     @GetMapping("/getStatisticsById")
     public CommonResult<Statistics> getStatisticsById(@RequestParam int id){
