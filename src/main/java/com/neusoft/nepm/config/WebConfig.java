@@ -22,6 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "/captcha/checkCaptcha",
                         "/gridMember/gridMemberRegister",
                         "/gridMember/getGridMemberByCodeByPass",
+                        "/supervisor/saveSupervisor",
                         "/nepm/mq/send",
                         "/mq/send"); // 排除不需要验证的路径
     }

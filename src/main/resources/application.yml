@@ -28,7 +28,7 @@ spring:
     # 用户名 替换成你实际的用户名
     username: 1368387047@qq.com
     # 授权码 可以去官方申请 不是个人邮箱密码
-    password: pnlobzaviewfhihi
+    password: 111
     from: 1368387047@qq.com
     smtp:
       auth: true
