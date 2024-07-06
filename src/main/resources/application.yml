@@ -28,7 +28,7 @@ spring:
     # 用户名 替换成你实际的用户名
     username: 1368387047@qq.com
     # 授权码 可以去官方申请 不是个人邮箱密码
-    password: brzbphiziscnghba
+    password: 111
     from: 1368387047@qq.com
     smtp:
       auth: true
@@ -112,8 +112,8 @@ jackson:
 
 leyou:
   sms:
-    accessKeyId: LTAI5t8rj6SdiooJERUEPS9c # 你自己的accessKeyId
-    accessKeySecret: Qq7sUFLOaUmL5HpYsifOu3yEDiVTdq # 你自己的AccessKeySecret
+    accessKeyId: 111 # 你自己的accessKeyId
+    accessKeySecret: 111 # 你自己的AccessKeySecret
     signName: NEPM实训项目 # 签名名称
     verifyCodeTemplate: SMS_468645353 # 模板名称CODE
 #jwt:
