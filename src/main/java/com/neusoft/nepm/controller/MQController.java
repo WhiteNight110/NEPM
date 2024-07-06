@@ -9,10 +9,7 @@ import com.neusoft.nepm.service.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/mq")
@@ -25,7 +22,7 @@ public class MQController {
     private SmsService smsService;
 
     @PostMapping("/mail")
-    public boolean sendMail(Mail mail) {
+    public boolean sendMail(@RequestBody Mail mail) {
         return testService.send(mail);
     }
 

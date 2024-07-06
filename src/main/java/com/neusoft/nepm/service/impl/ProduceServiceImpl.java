@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @Service
 public class ProduceServiceImpl implements ProduceService {
+
     @Autowired
     private RabbitTemplate rabbitTemplate;
 

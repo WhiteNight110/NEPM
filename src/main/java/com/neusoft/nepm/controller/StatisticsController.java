@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.StatisticsPageRequestDto;
+import com.neusoft.nepm.dto.StatisticsPageResponseDto;
 import com.neusoft.nepm.po.Statistics;
 import com.neusoft.nepm.service.StatisticsService;
 import io.swagger.annotations.Api;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Api(tags = "StatisticsController", description = "统计上传数据")
@@ -34,30 +36,10 @@ public class StatisticsController {
 
     @ApiOperation("查询确认AQI信息列表，并有模糊查询和分页功能")
     @ResponseBody
-    @GetMapping("/listStatisticsPage")
-    public CommonResult<CommonPage<Statistics>> listStatisticsPage(@RequestBody StatisticsPageRequestDto staPageRequestDto){
-        QueryWrapper<Statistics> qw = new QueryWrapper<>();
-        if(staPageRequestDto.getAqiLevel() != 0){
-            qw.eq("aqi_level", staPageRequestDto.getAqiLevel());
-        }
-        if(staPageRequestDto.getProvince_id() != 0){
-            qw.eq("province_id", staPageRequestDto.getProvince_id());
-        }
-        if(staPageRequestDto.getSo2Level() != 0){
-            qw.eq("so2_level", staPageRequestDto.getSo2Level());
-        }
-        if(staPageRequestDto.getCoLevel() != 0){
-            qw.eq("co_level", staPageRequestDto.getCoLevel());
-        }
-        if(staPageRequestDto.getSpmLevel() != 0){
-            qw.eq("spm_level", staPageRequestDto.getSpmLevel());
-        }
-        if(staPageRequestDto.getAddress() != "" && staPageRequestDto.getAddress() != null){
-            qw.like("address", staPageRequestDto.getAddress());
-        }
-        Page<Statistics> statisticsPage = new Page<>(staPageRequestDto.getPage(), staPageRequestDto.getSize());
+    @PostMapping("/listStatisticsPage")
+    public CommonResult<CommonPage<StatisticsPageResponseDto>> listStatisticsPage(@RequestBody StatisticsPageRequestDto staPageRequestDto){
 
-        return CommonResult.success(CommonPage.restPage(statisticsService.page(statisticsPage, qw)));
+        return CommonResult.success(statisticsService.listStatistics(staPageRequestDto));
     }
 
     @ApiOperation("根据主键查询确认Statistics信息")
@@ -70,10 +52,9 @@ public class StatisticsController {
     @ApiOperation("查询省分组AQI超标累计信息")
     @ResponseBody
     @GetMapping("/listProvinceItemTotalStatis")
-    public CommonResult<List<Statistics>> listProvinceItemTotalStatis(@RequestParam int provinceId){
-        QueryWrapper<Statistics> qw = new QueryWrapper<>();
-        qw.eq("province_id", provinceId);
-        return CommonResult.success(statisticsService.list(qw));
+    public CommonResult<List<Map<String, Object>>> listProvinceItemTotalStatis(){
+        List<Map<String, Object>> result = statisticsService.getStatisticsWithProvinceDetails();
+        return CommonResult.success(result);
     }
 
 

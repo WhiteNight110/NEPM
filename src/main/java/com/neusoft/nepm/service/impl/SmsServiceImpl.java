@@ -14,7 +14,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class SmsServiceImpl implements SmsService {
+public class SmsServiceImpl  implements SmsService {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
