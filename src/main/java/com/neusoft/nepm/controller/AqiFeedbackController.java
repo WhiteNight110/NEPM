@@ -1,11 +1,13 @@
 package com.neusoft.nepm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.dto.AfPageRequestDto;
 import com.neusoft.nepm.dto.AfPageResponseDto;
 import com.neusoft.nepm.dto.AfResponseDto;
+import com.neusoft.nepm.po.Aqi;
 import com.neusoft.nepm.po.AqiFeedback;
 import com.neusoft.nepm.service.AqiFeedbackService;
 import io.swagger.annotations.Api;
@@ -85,5 +87,16 @@ public class AqiFeedbackController {
         return CommonResult.success(aqiFeedbackList);
     }
 
+
+    @ApiOperation("分配AQI信息")
+    @GetMapping("/assignAqiFeedback")
+    @ResponseBody
+    public CommonResult<Boolean> assignAqiFeedback(@RequestParam Integer afId, @RequestParam Integer gmId){
+        UpdateWrapper<AqiFeedback> uw = new UpdateWrapper<>();
+        uw.gt("af_id", afId);
+        uw.set("gm_id", gmId);
+        uw.set("state", "1");
+        return CommonResult.success(true);
+    }
 
 }

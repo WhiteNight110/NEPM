@@ -28,7 +28,7 @@ spring:
     # 用户名 替换成你实际的用户名
     username: 1368387047@qq.com
     # 授权码 可以去官方申请 不是个人邮箱密码
-    password: pnlobzaviewfhihi
+    password: 111
     from: 1368387047@qq.com
     smtp:
       auth: true
@@ -56,7 +56,6 @@ spring:
 
     template:
       mandatory: true  # 强制消息必须被路由到一个队列
-
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -110,6 +109,13 @@ secure:
 jackson:
   data-format: yyyy-MM-dd HH:mm:ss
   time-zone: GMT+8
+
+leyou:
+  sms:
+    accessKeyId: 111 # 你自己的accessKeyId
+    accessKeySecret: 111 # 你自己的AccessKeySecret
+    signName: NEPM实训项目 # 签名名称
+    verifyCodeTemplate: SMS_468645353 # 模板名称CODE
 #jwt:
 #  tokenHeader: Authorization #JWT存储的请求头
 #  secret: mall-admin-secret #JWT加解密使用的密钥

@@ -4,17 +4,28 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@Data
-@ApiModel(description = "Statistic分页结果")
-public class StatisticsPageRequestDto {
-    private int page = 1;
-    private int size = 5;
-    private int province_id;
-    private String address;
-    private int so2Level;
-    private int coLevel;
-    private int spmLevel;
-    private int aqiLevel;
+import java.util.Date;
 
-    //    后续添加针对时间的查询
+@Data
+@ApiModel(description = "Statistic分页参数")
+public class StatisticsPageRequestDto {
+    private Integer page = 1;
+
+    private Integer size = 5;
+
+    private Integer provinceId;
+
+    private Integer cityId;
+
+    private String address;
+
+    private Integer so2Level;
+
+    private Integer coLevel;
+
+    private Integer spmLevel;
+
+    private Integer aqiLevel;
+
+    private Date confirmDate;
 }
