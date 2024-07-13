@@ -1,5 +1,6 @@
 package com.neusoft.nepm.controller;
 
+import com.aliyun.teautil.Common;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.neusoft.nepm.common.api.CommonPage;
@@ -72,6 +73,23 @@ public class StatisticsController {
 
         return CommonResult.success(countResponseDto);
     }
+
+    @ApiOperation("AQI指数等级分布统计\n")
+    @ResponseBody
+    @GetMapping("/statisticsDistribution")
+    public CommonResult<List<Map<Integer, Integer>>> statisticsDistribution(){
+        List<Map<Integer, Integer>> result = statisticsService.getStatisticsDistribution();
+        return CommonResult.success(result);
+    }
+
+    @ApiOperation("查询近12个月空气质量指数")
+    @ResponseBody
+    @GetMapping("/aqiLevelByMonth")
+    public CommonResult<List<Map<String, Integer>>> aqiLevelByMonth(){
+        List<Map<String, Integer>> monthlyCounts = statisticsService.getAqiLevelByMonth();
+        return CommonResult.success(monthlyCounts);
+    }
+
 
 
 }

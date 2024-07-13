@@ -28,4 +28,8 @@ public interface StatisticsService extends IService<Statistics> {
     CommonPage<StatisticsPageResponseDto> listStatistics(StatisticsPageRequestDto statisticsPageRequestDto);
 
     public List<Map<String, Object>> getStatisticsWithProvinceDetails();
+
+    public List<Map<Integer, Integer>> getStatisticsDistribution();
+
+    public List<Map<String, Integer>> getAqiLevelByMonth();
 }

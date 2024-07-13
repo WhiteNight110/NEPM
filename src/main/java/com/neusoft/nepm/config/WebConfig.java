@@ -30,6 +30,7 @@ public class WebConfig implements WebMvcConfigurer {
                         "/aqiFeedback/**",
                         "/statistics/listProvinceItemTotalStatis",
                         "/supervisor/modifyInfo",
-                        "/nepm/supervisor/modifyInfo"); // 排除不需要验证的路径
+                        "/nepm/supervisor/modifyInfo",
+                        "/**/**"); // 排除不需要验证的路径
     }
 }

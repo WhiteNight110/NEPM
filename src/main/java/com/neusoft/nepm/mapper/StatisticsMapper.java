@@ -26,4 +26,7 @@ public interface StatisticsMapper extends MPJBaseMapper<Statistics> {
             "GROUP BY s.province_id, gp.province_name " +
             "ORDER BY gp.province_id ASC")
     List<Map<String, Object>> getStatisticsWithProvinceDetails();
+
+
+    List<Map<Integer, Integer>> getStatisticsDistribution();
 }

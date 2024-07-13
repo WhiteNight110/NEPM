@@ -15,6 +15,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,4 +74,62 @@ public class StatisticsServiceImpl extends ServiceImpl<StatisticsMapper, Statist
     public List<Map<String, Object>> getStatisticsWithProvinceDetails() {
         return statisticsMapper.getStatisticsWithProvinceDetails();
     }
+
+    public List<Map<Integer, Integer>> getStatisticsDistribution() {
+        MPJLambdaWrapper<Statistics> mpjLambdaWrapper = new MPJLambdaWrapper<Statistics>()
+                .select(Statistics::getAqiLevel)
+                .select("COUNT(*) AS count") // 使用别名 count // 统计每个分组的数量
+                .groupBy(Statistics::getAqiLevel);
+
+        // 执行查询并获取结果
+        List<Map<String, Object>> results = statisticsMapper.selectMaps(mpjLambdaWrapper);
+
+//        System.out.println("========");
+//        System.out.println(results);
+
+        // 转换结果格式
+        List<Map<Integer, Integer>> distribution = new ArrayList<>();
+        for (Map<String, Object> result : results) {
+            Map<Integer, Integer> map = new HashMap<>();
+            map.put((Integer) result.get("aqi_level"), ((Long) result.get("count")).intValue());
+            distribution.add(map);
+        }
+
+        return distribution;
+    }
+
+    public List<Map<String, Integer>> getAqiLevelByMonth(){
+        MPJLambdaWrapper<Statistics> mpjLambdaWrapper = new MPJLambdaWrapper<Statistics>()
+                .select("DATE_FORMAT(confirm_date, '%Y-%m') AS month")
+                .select("COUNT(*) AS count") // 使用别名 count
+                .groupBy("month")
+                .ge(Statistics::getAqiLevel, 2)
+                .ge(Statistics::getConfirmDate, LocalDate.now().minusMonths(12));
+
+        // 执行查询并获取结果
+        List<Map<String, Object>> results = statisticsMapper.selectMaps(mpjLambdaWrapper);
+
+        // System.out.println("========");
+        // System.out.println(results);
+
+        // 转换结果格式
+        Map<String, Integer> resultMap = new HashMap<>();
+        for (Map<String, Object> result : results) {
+            resultMap.put((String) result.get("month"), ((Long) result.get("count")).intValue());
+        }
+
+        // 补全近12个月的月份
+        List<Map<String, Integer>> monthlyCounts = new ArrayList<>();
+        LocalDate now = LocalDate.now();
+        for (int i = 0; i < 12; i++) {
+            LocalDate monthDate = now.minusMonths(i);
+            String month = monthDate.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+            Map<String, Integer> map = new HashMap<>();
+            map.put(month, resultMap.getOrDefault(month, 0));
+            monthlyCounts.add(map);
+        }
+
+        return monthlyCounts;
+    }
+
 }
