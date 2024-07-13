@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
-//                .addPathPatterns("/**/**") // 拦截所有请求
+                .addPathPatterns("/**/**") // 拦截所有请求
                 .excludePathPatterns("/admins/getAdminsByCode",
                         "/admins/adminsRegister",
                         "/captcha/getCaptcha",
@@ -28,6 +28,8 @@ public class WebConfig implements WebMvcConfigurer {
                         "/mq/mail",
                         "/mq/sms",
                         "/aqiFeedback/**",
-                        "/statistics/listProvinceItemTotalStatis"); // 排除不需要验证的路径
+                        "/statistics/listProvinceItemTotalStatis",
+                        "/supervisor/modifyInfo",
+                        "/nepm/supervisor/modifyInfo"); // 排除不需要验证的路径
     }
 }

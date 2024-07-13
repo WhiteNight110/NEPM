@@ -11,7 +11,7 @@ import java.util.Date;
 public class StatisticsPageRequestDto {
     private Integer page = 1;
 
-    private Integer size = 5;
+    private Integer size = 7;
 
     private Integer provinceId;
 

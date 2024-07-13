@@ -1,5 +1,6 @@
 package com.neusoft.nepm.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.neusoft.nepm.common.api.CommonResult;
 import com.neusoft.nepm.common.api.ResultCode;
 import com.neusoft.nepm.po.Supervisor;
@@ -47,6 +48,22 @@ public class SupervisorController {
         else{
             return CommonResult.successWithString(msg);
         }
+    }
+
+
+    @ApiOperation("/修改个人信息")
+    @PostMapping("/modifyInfo")
+    @ResponseBody
+    public CommonResult<Boolean> modifyInfo(@RequestBody Supervisor supervisor){
+        Supervisor updateSupervisor = new Supervisor();
+        updateSupervisor.setTelId(supervisor.getTelId());
+        updateSupervisor.setBirthday(supervisor.getBirthday());
+        updateSupervisor.setSex(supervisor.getSex());
+        updateSupervisor.setRealName(supervisor.getRealName());
+
+        QueryWrapper<Supervisor> qw = new QueryWrapper<>();
+        qw.eq("tel_id", supervisor.getTelId());
+        return CommonResult.success(supervisorService.update(updateSupervisor, qw)) ;
     }
 
 
