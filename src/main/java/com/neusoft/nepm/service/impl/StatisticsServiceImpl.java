@@ -43,17 +43,17 @@ public class StatisticsServiceImpl extends ServiceImpl<StatisticsMapper, Statist
                 .leftJoin(Aqi.class, Aqi::getAqiLevel, Statistics::getAqiLevel)
                 .leftJoin(GridMember.class, GridMember::getGmId, Statistics::getGmId);
         if (staPageRequestDto.getProvinceId() != null) {
-            mpjLambdaWrapper.eq("province_id", staPageRequestDto.getProvinceId());
+            mpjLambdaWrapper.eq(Statistics::getProvinceId, staPageRequestDto.getProvinceId());
         }
         if (staPageRequestDto.getCityId() != null) {
-            mpjLambdaWrapper.eq("city_id", staPageRequestDto.getCityId());
+            mpjLambdaWrapper.eq(Statistics::getCityId, staPageRequestDto.getCityId());
         }
         if (staPageRequestDto.getAddress() != null && staPageRequestDto.getAddress() != "") {
             mpjLambdaWrapper.like("address", staPageRequestDto.getAddress());
         }
 
         if(staPageRequestDto.getAqiLevel() != null) {
-            mpjLambdaWrapper.eq("aqi_level", staPageRequestDto.getAqiLevel());
+            mpjLambdaWrapper.eq(Statistics::getAqiLevel, staPageRequestDto.getAqiLevel());
         }
 
         if(staPageRequestDto.getConfirmDate() != null){

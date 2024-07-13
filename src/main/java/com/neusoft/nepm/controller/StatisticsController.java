@@ -4,12 +4,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.neusoft.nepm.common.api.CommonPage;
 import com.neusoft.nepm.common.api.CommonResult;
+import com.neusoft.nepm.dto.CountResponseDto;
 import com.neusoft.nepm.dto.StatisticsPageRequestDto;
 import com.neusoft.nepm.dto.StatisticsPageResponseDto;
 import com.neusoft.nepm.po.Statistics;
 import com.neusoft.nepm.service.StatisticsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +57,20 @@ public class StatisticsController {
     public CommonResult<List<Map<String, Object>>> listProvinceItemTotalStatis(){
         List<Map<String, Object>> result = statisticsService.getStatisticsWithProvinceDetails();
         return CommonResult.success(result);
+    }
+
+    @ApiOperation("查询反馈数据总数")
+    @ResponseBody
+    @GetMapping("/totalCount")
+    public CommonResult<CountResponseDto> totalCount(){
+        CountResponseDto countResponseDto = new CountResponseDto();
+        countResponseDto.setTotalCount(statisticsService.count());
+
+        QueryWrapper<Statistics> qw = new QueryWrapper<>();
+        qw.le("aqi_level", 1);
+        countResponseDto.setGoodCount(statisticsService.count(qw));
+
+        return CommonResult.success(countResponseDto);
     }
 
 

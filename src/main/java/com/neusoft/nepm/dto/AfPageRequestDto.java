@@ -19,7 +19,7 @@ import java.util.Date;
 public class AfPageRequestDto{
 
     private Integer page = 1;
-    private Integer size = 5;
+    private Integer size = 7;
     private Integer provinceId;
     private Integer cityId;
     private Integer estimatedGrade;

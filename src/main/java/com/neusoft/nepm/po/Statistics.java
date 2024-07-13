@@ -2,7 +2,11 @@ package com.neusoft.nepm.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
 
 /**
  * <p>
@@ -75,12 +79,13 @@ public class Statistics implements Serializable {
     /**
      * 确认日期
      */
-    private String confirmDate;
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
+    private Date confirmDate;
 
     /**
      * 确认时间
      */
-    private String confirmTime;
+    private Time confirmTime;
 
     /**
      * 所属网格员编号
@@ -187,18 +192,18 @@ public class Statistics implements Serializable {
     public void setAqiId(Integer aqiLevel) {
         this.aqiLevel = aqiLevel;
     }
-    public String getConfirmDate() {
+    public Date getConfirmDate() {
         return confirmDate;
     }
 
-    public void setConfirmDate(String confirmDate) {
+    public void setConfirmDate(Date confirmDate) {
         this.confirmDate = confirmDate;
     }
-    public String getConfirmTime() {
+    public Time getConfirmTime() {
         return confirmTime;
     }
 
-    public void setConfirmTime(String confirmTime) {
+    public void setConfirmTime(Time confirmTime) {
         this.confirmTime = confirmTime;
     }
     public Integer getGmId() {

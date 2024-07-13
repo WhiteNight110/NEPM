@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -89,14 +90,13 @@ public class AqiFeedbackController {
 
 
     @ApiOperation("分配AQI信息")
-    @GetMapping("/assignAqiFeedback")
+    @PostMapping("/assignAqiFeedback")
     @ResponseBody
     public CommonResult<Boolean> assignAqiFeedback(@RequestParam Integer afId, @RequestParam Integer gmId){
         UpdateWrapper<AqiFeedback> uw = new UpdateWrapper<>();
-        uw.gt("af_id", afId);
-        uw.set("gm_id", gmId);
-        uw.set("state", "1");
-        return CommonResult.success(true);
+        uw.eq("af_id", afId).set("gm_id", gmId).set("state", 1).set("assign_date", new Date()).set("assign_time", new Date().getTime());
+
+        return CommonResult.success(aqiFeedbackService.update(uw));
     }
 
 }
