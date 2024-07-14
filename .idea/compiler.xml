@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="captcha-service" />
+        <module name="nepm-common" />
+        <module name="aqiFeedback-service" />
+        <module name="statistics-service" />
+        <module name="nepm-gateway" />
+        <module name="supervisor-service" />
+        <module name="msgLog-service" />
+        <module name="gridMember-service" />
+        <module name="gridCity-service" />
+        <module name="gridProvince-service" />
+        <module name="aqi-service" />
+        <module name="nepm-mq" />
+        <module name="admin-service" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="nepm-backend" options="" />
+      <module name="nepm-common" options="" />
+    </option>
+  </component>
+</project>

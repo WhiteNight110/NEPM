@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>nepm-backend</artifactId>
+        <groupId>com.neusoft</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>nepm-business</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>admin-service</module>
+        <module>aqi-service</module>
+        <module>aqiFeedback-service</module>
+        <module>captcha-service</module>
+        <module>gridCity-service</module>
+        <module>gridMember-service</module>
+        <module>gridProvince-service</module>
+        <module>statistics-service</module>
+        <module>supervisor-service</module>
+        <module>msgLog-service</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.neusoft</groupId>
+            <artifactId>nepm-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>

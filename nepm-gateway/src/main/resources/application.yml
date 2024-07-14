@@ -1,0 +1,63 @@
+server:
+  port: 8000 # 应用服务 WEB 访问端口
+spring:
+  application:
+    name: gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: mq
+          uri: http://127.0.0.1:8001
+          predicates:
+            - Path=/mq/**
+        - id: admins
+          uri: http://127.0.0.1:8002
+          predicates:
+            - Path=/admins/**
+        - id: aqi
+          uri: http://127.0.0.1:8003
+          predicates:
+            - Path=/aqi/**
+        - id: aqiFeedback
+          uri: http://127.0.0.1:8004
+          predicates:
+            - Path=/aqiFeedback/**
+        - id: captcha
+          uri: http://127.0.0.1:8005
+          predicates:
+            - Path=/captcha/**
+        - id: gridCity
+          uri: http://127.0.0.1:8006
+          predicates:
+            - Path=/gridCity/**
+        - id: gridMember
+          uri: http://127.0.0.1:8007
+          predicates:
+            - Path=/gridMember/**
+        - id: gridProvinceController
+          uri: http://127.0.0.1:8008
+          predicates:
+            - Path=/gridProvinceController/**
+        - id: statistics
+          uri: http://127.0.0.1:8009
+          predicates:
+            - Path=/statistics/**
+        - id: supervisor
+          uri: http://127.0.0.1:8010
+          predicates:
+            - Path=/supervisor/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+#            allow-credentials: true
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      default-filters:
+            - DedupeResponseHeader=Vary Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
+#            - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE
