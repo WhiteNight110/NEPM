@@ -1,0 +1,92 @@
+server:
+  port: 8000 # 应用服务 WEB 访问端口
+spring:
+  application:
+    name: gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 118.202.10.207:8848
+        namespace: 0b20f745-adb5-4a96-9586-258792e4c24e
+    gateway:
+      routes:
+        - id: mq
+          uri: http://118.202.10.207:8001
+          predicates:
+            - Path=/mq/**
+#          filters:
+#            - StripPrefix=1
+        - id: admins
+          uri: http://118.202.10.207:8002
+          predicates:
+            - Path=/admins/**
+#          filters:
+#            - StripPrefix=1
+        - id: aqi
+          uri: http://118.202.10.207:8003
+          predicates:
+            - Path=/aqi/**
+#          filters:
+#            - StripPrefix=1
+
+        - id: aqiFeedback
+          uri: http://118.202.10.207:8003
+          predicates:
+            - Path=/aqiFeedback/**
+#          filters:
+#            - StripPrefix=1
+
+        - id: captcha
+          uri: http://118.202.10.207:8005
+          predicates:
+            - Path=/captcha/**
+#          filters:
+#            - StripPrefix=1
+
+        - id: gridCity
+          uri: http://118.202.10.207:8006
+          predicates:
+            - Path=/gridCity/**
+#          filters:
+#            - StripPrefix=1
+
+        - id: gridMember
+          uri: http://118.202.10.207:8006
+          predicates:
+            - Path=/gridMember/**
+#          filters:
+#            - StripPrefix=1
+
+        - id: gridProvinceController
+          uri: http://118.202.10.207:8006
+          predicates:
+            - Path=/gridProvinceController/**
+#          filters:
+#            - StripPrefix=1
+
+        - id: statistics
+          uri: http://118.202.10.207:8003
+          predicates:
+            - Path=/statistics/**
+#          filters:
+#            - StripPrefix=1
+
+        - id: supervisor
+          uri: http://118.202.10.207:8002
+          predicates:
+            - Path=/supervisor/**
+#          filters:
+#            - StripPrefix=1
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+#            allow-credentials: true
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      default-filters:
+            - DedupeResponseHeader=Vary Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
+#            - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE

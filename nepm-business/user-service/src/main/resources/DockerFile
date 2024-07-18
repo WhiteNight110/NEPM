@@ -1,0 +1,8 @@
+# 指定基础镜像
+FROM java:11-alpine
+# 将 jar 包复制到容器中
+COPY ./app.jar /app.jar
+# 暴露端口
+EXPOSE 8002
+# 入口，java项目的启动命令
+ENTRYPOINT java -jar /app.jar

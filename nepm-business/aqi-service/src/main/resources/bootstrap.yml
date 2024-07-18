@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: aqi
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 118.202.10.207
+        namespace: 0b20f745-adb5-4a96-9586-258792e4c24e
+      config:
+        file-extension: yaml
+        namespace: 0b20f745-adb5-4a96-9586-258792e4c24e
+        shared-configs:
+          - data-id: shared-application.yaml

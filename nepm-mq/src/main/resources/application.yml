@@ -1,0 +1,65 @@
+server:
+  port: 8001 # 应用服务 WEB 访问端口
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: mq
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 118.202.10.207:8848
+        namespace: 0b20f745-adb5-4a96-9586-258792e4c24e
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    host: 127.0.0.1 # Redis服务器地址
+    database: 0 # Redis数据库索引（默认为0）
+    port: 6379 # Redis服务器连接端口
+    password: 123456
+    timeout: 3000ms # 连接超时时间（毫秒）
+  # 邮箱配置
+  mail:
+    host: smtp.qq.com
+    # smtp 服务器端口
+    port: 25
+
+    # 用户名 替换成你实际的用户名
+    username: 1368387047@qq.com
+    # 授权码 可以去官方申请 不是个人邮箱密码
+    password: nuhwvsskcneqbacc
+    from: 1368387047@qq.com
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+        required: true
+
+
+  rabbitmq:
+    host: 118.202.10.207 # RabbitMQ服务器主机名
+    port: 5672 # RabbitMQ服务器端口号
+    username: guest # 连接用户名
+    password: guest # 连接密码
+    publisher-returns: true  # 启用发布者返回确认
+    publisher-confirm-type: correlated  # 发布者确认类型 correlated 意味着生产者将使用带有关联 ID 的回调来确认发布
+    requested-heartbeat: 60s
+    connection-timeout: 1000ms  # 连接超时时间
+
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 100
+        concurrency: 4  # 并发消费者数量
+        max-concurrency: 10  # 最大并发消费者数量
+
+    template:
+      mandatory: true  # 强制消息必须被路由到一个队列
+
+leyou:
+  sms:
+    accessKeyId: # 你自己的accessKeyId
+    accessKeySecret: # 你自己的AccessKeySecret
+    signName: NEPM实训项目 # 签名名称
+    verifyCodeTemplate: SMS_468645353 # 模板名称CODE
