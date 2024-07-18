@@ -12,10 +12,14 @@
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/supervisor-service/pom.xml" />
+        <option value="$PROJECT_DIR$/nepm-business/aqiFeedback-service/pom.xml" />
+        <option value="$PROJECT_DIR$/nepm-business/gridMember-service/pom.xml" />
+        <option value="$PROJECT_DIR$/nepm-business/gridProvince-service/pom.xml" />
+        <option value="$PROJECT_DIR$/nepm-business/msgLog-service/pom.xml" />
+        <option value="$PROJECT_DIR$/nepm-business/statistics-service/pom.xml" />
+        <option value="$PROJECT_DIR$/nepm-business/supervisor-service/pom.xml" />
       </set>
     </option>
-    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

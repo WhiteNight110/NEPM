@@ -5,9 +5,20 @@ server:
 spring:
   application:
     name: mq
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 118.202.10.207:8848
+        namespace: 0b20f745-adb5-4a96-9586-258792e4c24e
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  redis:
+    host: 127.0.0.1 # Redis服务器地址
+    database: 0 # Redis数据库索引（默认为0）
+    port: 6379 # Redis服务器连接端口
+    password: 123456
+    timeout: 3000ms # 连接超时时间（毫秒）
   # 邮箱配置
   mail:
     host: smtp.qq.com
@@ -17,17 +28,17 @@ spring:
     # 用户名 替换成你实际的用户名
     username: 1368387047@qq.com
     # 授权码 可以去官方申请 不是个人邮箱密码
-    password: 111
+    password: nuhwvsskcneqbacc
     from: 1368387047@qq.com
     smtp:
       auth: true
       starttls:
         enable: true
         required: true
-    thymeleaf-html:
+
 
   rabbitmq:
-    host: 127.0.0.1 # RabbitMQ服务器主机名
+    host: 118.202.10.207 # RabbitMQ服务器主机名
     port: 5672 # RabbitMQ服务器端口号
     username: guest # 连接用户名
     password: guest # 连接密码
@@ -48,7 +59,7 @@ spring:
 
 leyou:
   sms:
-    accessKeyId: 111 # 你自己的accessKeyId
-    accessKeySecret: 111 # 你自己的AccessKeySecret
+    accessKeyId: LTAI5tEdNLMxu52hfhZRyotq # 你自己的accessKeyId
+    accessKeySecret: XLIZbN6jzV4qvnO9vOgdN3mHGi5hZ8 # 你自己的AccessKeySecret
     signName: NEPM实训项目 # 签名名称
     verifyCodeTemplate: SMS_468645353 # 模板名称CODE

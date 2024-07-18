@@ -1,36 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/nepm-business/admin-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nepm-business/admin-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/aqi-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/aqi-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/aqi-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/aqiFeedback-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/aqiFeedback-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/aqiFeedback-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/captcha-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/captcha-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/captcha-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nepm-business/gridCity-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nepm-business/gridCity-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/grid-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/grid-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/grid-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/gridMember-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/gridMember-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/gridMember-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/gridProvince-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/gridProvince-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/gridProvince-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/msgLog-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/msgLog-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/msgLog-service/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nepm-business/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nepm-business/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/statistics-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/statistics-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/statistics-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/supervisor-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/supervisor-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-business/supervisor-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-business/user-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-common/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/nepm-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-gateway" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nepm-mq" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-mq/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nepm-mq/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

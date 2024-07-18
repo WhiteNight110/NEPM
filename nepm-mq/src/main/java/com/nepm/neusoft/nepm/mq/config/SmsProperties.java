@@ -14,8 +14,6 @@ public class SmsProperties {
 
     String verifyCodeTemplate;
 
-    // getter和setter省略
-
     public String getAccessKeyId() {
         return accessKeyId;
     }

@@ -7,21 +7,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="captcha-service" />
-        <module name="nepm-common" />
-        <module name="aqiFeedback-service" />
-        <module name="statistics-service" />
         <module name="nepm-gateway" />
-        <module name="supervisor-service" />
-        <module name="msgLog-service" />
-        <module name="gridMember-service" />
-        <module name="gridCity-service" />
-        <module name="gridProvince-service" />
         <module name="aqi-service" />
         <module name="nepm-mq" />
-        <module name="admin-service" />
+        <module name="nepm-common" />
+        <module name="user-service" />
+        <module name="captcha-service" />
+        <module name="grid-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aqiFeedback-service" target="1.8" />
+      <module name="gridMember-service" target="1.8" />
+      <module name="gridProvince-service" target="1.8" />
+      <module name="msgLog-service" target="1.8" />
+      <module name="statistics-service" target="1.8" />
+      <module name="supervisor-service" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

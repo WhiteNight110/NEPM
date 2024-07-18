@@ -5,7 +5,17 @@ import com.neusoft.nepm.common.api.ValidateCodeVo;
 
 public interface CaptchaService  extends IService<ValidateCodeVo> {
 
+    /**
+     * 生成验证码
+     * @return ValidateCodeVo
+     */
     ValidateCodeVo generateValidateCode();
 
-    boolean verifyValidateCode(String captcha, String codeKey);
+    /**
+     * 验证码校验
+     * @param captcha
+     * @param codeKey
+     * @return Boolean
+     */
+    Boolean verifyValidateCode(String captcha, String codeKey);
 }

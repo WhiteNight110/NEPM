@@ -27,6 +27,11 @@ public class Statistics implements Serializable {
     private Integer id;
 
     /**
+     * 所属Aqi反馈编号
+     */
+    private Integer afId;
+
+    /**
      * 所属省区域编号
      */
     private Integer provinceId;
@@ -114,7 +119,13 @@ public class Statistics implements Serializable {
     public void setAqiLevel(Integer aqiLevel) {
         this.aqiLevel = aqiLevel;
     }
+    public Integer getAfId() {
+        return afId;
+    }
 
+    public void setAfId(Integer afId) {
+        this.afId = afId;
+    }
     public Integer getId() {
         return id;
     }

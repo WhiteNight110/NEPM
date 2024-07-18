@@ -42,7 +42,6 @@ public class RabbitConfig {
         return factory;
     }
 
-
     @Bean
     public RabbitTemplate rabbitTemplate(CachingConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);

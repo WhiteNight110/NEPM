@@ -14,33 +14,36 @@ import reactor.core.publisher.Mono;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Component
 public class TokenFilter implements GlobalFilter, Ordered {
 
     private static final String HEADER_AUTH = "Authorization";
-    private static final List<String> SAFE_URL_LIST = Arrays.asList(
-            "/admins/getAdminsByCode",
-            "/admins/adminsRegister",
-            "/admins/getCaptcha",
-            "/admins/checkCaptcha",
-            "/captcha/getCaptcha",
-            "/captcha/checkCaptcha",
-            "/gridMember/gridMemberRegister",
-            "/gridMember/getGridMemberByCodeByPass",
-            "/supervisor/saveSupervisor",
-            "/supervisor/getSupervisorByIdByPass",
-            "/mq/mail",
-            "/mq/sms"
-//            "/aqiFeedback/**",
-//            "/statistics/listProvinceItemTotalStatis",
-//            "/supervisor/modifyInfo"
+    private static final List<Pattern> SAFE_URL_PATTERNS = Arrays.asList(
+            // 匹配所有路径
+            Pattern.compile(".*"),
+            Pattern.compile("/admins/login/\\w+/\\w+"),
+            Pattern.compile("/admins/adminsRegister"),
+            Pattern.compile("/admins/getCaptcha"),
+            Pattern.compile("/admins/checkCaptcha"),
+            Pattern.compile("/captcha/getCaptcha"),
+            Pattern.compile("/captcha/checkCaptcha"),
+            Pattern.compile("/gridMember/gridMemberRegister"),
+            Pattern.compile("/gridMember/getGridMemberByCodeByPass"),
+            Pattern.compile("/supervisor/saveSupervisor"),
+            Pattern.compile("/supervisor/getSupervisorByIdByPass"),
+            Pattern.compile("/mq/mail"),
+            Pattern.compile("/mq/sms"),
+            Pattern.compile("/statistics/totalCount"),
+            Pattern.compile("/statistics/statisticsDistribution"),
+            Pattern.compile("/statistics/aqiLevelByMonth")
     );
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String url = exchange.getRequest().getURI().getPath();
-        if (SAFE_URL_LIST.contains(url)) {
+        if (isSafeUrl(url)) {
             return chain.filter(exchange);
         }
 
@@ -65,5 +68,9 @@ public class TokenFilter implements GlobalFilter, Ordered {
     @Override
     public int getOrder() {
         return Ordered.LOWEST_PRECEDENCE;
+    }
+
+    private boolean isSafeUrl(String url) {
+        return SAFE_URL_PATTERNS.stream().anyMatch(pattern -> pattern.matcher(url).matches());
     }
 }

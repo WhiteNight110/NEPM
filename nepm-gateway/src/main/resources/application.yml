@@ -8,49 +8,78 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 118.202.10.207:8848
+        namespace: 0b20f745-adb5-4a96-9586-258792e4c24e
     gateway:
       routes:
         - id: mq
-          uri: http://127.0.0.1:8001
+          uri: http://118.202.10.207:8001
           predicates:
             - Path=/mq/**
+#          filters:
+#            - StripPrefix=1
         - id: admins
-          uri: http://127.0.0.1:8002
+          uri: http://118.202.10.207:8002
           predicates:
             - Path=/admins/**
+#          filters:
+#            - StripPrefix=1
         - id: aqi
-          uri: http://127.0.0.1:8003
+          uri: http://118.202.10.207:8003
           predicates:
             - Path=/aqi/**
+#          filters:
+#            - StripPrefix=1
+
         - id: aqiFeedback
-          uri: http://127.0.0.1:8004
+          uri: http://118.202.10.207:8003
           predicates:
             - Path=/aqiFeedback/**
+#          filters:
+#            - StripPrefix=1
+
         - id: captcha
-          uri: http://127.0.0.1:8005
+          uri: http://118.202.10.207:8005
           predicates:
             - Path=/captcha/**
+#          filters:
+#            - StripPrefix=1
+
         - id: gridCity
-          uri: http://127.0.0.1:8006
+          uri: http://118.202.10.207:8006
           predicates:
             - Path=/gridCity/**
+#          filters:
+#            - StripPrefix=1
+
         - id: gridMember
-          uri: http://127.0.0.1:8007
+          uri: http://118.202.10.207:8006
           predicates:
             - Path=/gridMember/**
+#          filters:
+#            - StripPrefix=1
+
         - id: gridProvinceController
-          uri: http://127.0.0.1:8008
+          uri: http://118.202.10.207:8006
           predicates:
             - Path=/gridProvinceController/**
+#          filters:
+#            - StripPrefix=1
+
         - id: statistics
-          uri: http://127.0.0.1:8009
+          uri: http://118.202.10.207:8003
           predicates:
             - Path=/statistics/**
+#          filters:
+#            - StripPrefix=1
+
         - id: supervisor
-          uri: http://127.0.0.1:8010
+          uri: http://118.202.10.207:8002
           predicates:
             - Path=/supervisor/**
+#          filters:
+#            - StripPrefix=1
+
       globalcors:
         cors-configurations:
           '[/**]':

@@ -14,5 +14,9 @@ import java.util.List;
  * @since 2024-06-14
  */
 public interface AqiService extends IService<Aqi> {
+    /**
+     * 查询所有Aqi信息
+     * @return
+     */
     List<Aqi> AqiByAll();
 }

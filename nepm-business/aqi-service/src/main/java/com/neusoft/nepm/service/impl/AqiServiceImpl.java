@@ -23,6 +23,10 @@ public class AqiServiceImpl extends ServiceImpl<AqiMapper, Aqi> implements AqiSe
     @Autowired
     private AqiMapper aqiMapper;
 
+    /**
+     * 查询所有Aqi信息
+     * @return List<Aqi>
+     */
     @Override
     public List<Aqi> AqiByAll() {
         List<Aqi> aqiList = aqiMapper.selectList(null);
